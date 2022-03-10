@@ -1,0 +1,702 @@
+[gd_scene load_steps=52 format=2]
+
+[ext_resource path="res://Art/Actor/cat.png" type="Texture" id=1]
+[ext_resource path="res://Mesh/Bonfire/bonfire.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Art/Actor/dog.png" type="Texture" id=3]
+[ext_resource path="res://Art/Actor/mouse.png" type="Texture" id=4]
+[ext_resource path="res://Mesh/Bonfire/brench.png" type="Texture" id=5]
+[ext_resource path="res://Mesh/Bonfire/Rock.png" type="Texture" id=6]
+[ext_resource path="res://Art/Effect/Smoke.png" type="Texture" id=7]
+[ext_resource path="res://Fire.tres" type="Gradient" id=8]
+[ext_resource path="res://rest_env.tres" type="Environment" id=9]
+[ext_resource path="res://Source/Main/DevCam.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Mesh/Tree/tree2.png" type="Texture" id=11]
+[ext_resource path="res://Mesh/Tree/tree.png" type="Texture" id=12]
+[ext_resource path="res://Mesh/Tree/tree.obj" type="ArrayMesh" id=13]
+[ext_resource path="res://Mesh/Gravestone/gravestone.obj" type="ArrayMesh" id=14]
+[ext_resource path="res://Mesh/Sign/sign.obj" type="ArrayMesh" id=15]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 10, 10 )
+
+[sub_resource type="SpatialMaterial" id=33]
+albedo_color = Color( 0.894118, 0.686275, 0.321569, 1 )
+
+[sub_resource type="SpatialMaterial" id=17]
+albedo_texture = ExtResource( 6 )
+
+[sub_resource type="SpatialMaterial" id=18]
+albedo_texture = ExtResource( 5 )
+
+[sub_resource type="SpatialMaterial" id=19]
+albedo_texture = ExtResource( 5 )
+
+[sub_resource type="SpatialMaterial" id=20]
+albedo_texture = ExtResource( 5 )
+
+[sub_resource type="SpatialMaterial" id=21]
+albedo_texture = ExtResource( 5 )
+
+[sub_resource type="SpatialMaterial" id=22]
+albedo_texture = ExtResource( 5 )
+
+[sub_resource type="SpatialMaterial" id=23]
+albedo_texture = ExtResource( 5 )
+
+[sub_resource type="GradientTexture" id=24]
+gradient = ExtResource( 8 )
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.231156, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=25]
+trail_divisor = 4
+emission_shape = 1
+emission_sphere_radius = 0.4
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 3.0
+initial_velocity_random = 1.0
+angular_velocity = 40.0
+angular_velocity_random = 1.0
+linear_accel = 4.0
+linear_accel_random = 1.0
+angle = 360.0
+angle_random = 1.0
+scale = 0.8
+scale_curve = SubResource( 3 )
+color_ramp = SubResource( 24 )
+anim_speed = 1.0
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 6
+particles_anim_v_frames = 5
+particles_anim_loop = true
+albedo_texture = ExtResource( 7 )
+
+[sub_resource type="QuadMesh" id=26]
+material = SubResource( 5 )
+size = Vector2( 0.2, 0.2 )
+
+[sub_resource type="SpatialMaterial" id=30]
+albedo_texture = ExtResource( 12 )
+
+[sub_resource type="SpatialMaterial" id=31]
+albedo_texture = ExtResource( 12 )
+
+[sub_resource type="SpatialMaterial" id=32]
+albedo_texture = ExtResource( 11 )
+
+[sub_resource type="PlaneMesh" id=34]
+size = Vector2( 0.6, 8 )
+
+[sub_resource type="CylinderMesh" id=35]
+top_radius = 1.5
+height = 0.001
+
+[sub_resource type="SpatialMaterial" id=36]
+params_cull_mode = 2
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 16
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 16
+atlas = ExtResource( 1 )
+region = Rect2( 26, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 16
+atlas = ExtResource( 1 )
+region = Rect2( 52, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 16
+atlas = ExtResource( 1 )
+region = Rect2( 78, 0, 26, 26 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 4 ), SubResource( 29 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 16
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 16
+atlas = ExtResource( 3 )
+region = Rect2( 26, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 16
+atlas = ExtResource( 3 )
+region = Rect2( 52, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 16
+atlas = ExtResource( 3 )
+region = Rect2( 78, 0, 26, 26 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 16
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 16
+atlas = ExtResource( 4 )
+region = Rect2( 26, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 16
+atlas = ExtResource( 4 )
+region = Rect2( 52, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 16
+atlas = ExtResource( 4 )
+region = Rect2( 78, 0, 26, 26 )
+
+[sub_resource type="SpriteFrames" id=16]
+animations = [ {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Level" type="Node"]
+
+[node name="Enovironment" type="Spatial" parent="."]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Enovironment"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3, 0 )
+light_energy = 0.0
+
+[node name="Room" type="Spatial" parent="Enovironment"]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Enovironment/Room"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 33 )
+
+[node name="MeshInstance6" type="MeshInstance" parent="Enovironment/Room"]
+transform = Transform( -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 10, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="Enovironment/Room"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -5, 5, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="MeshInstance4" type="MeshInstance" parent="Enovironment/Room"]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 5, 5, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="MeshInstance3" type="MeshInstance" parent="Enovironment/Room"]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0, 5, -5 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="MeshInstance5" type="MeshInstance" parent="Enovironment/Room"]
+transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 5, 5 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Bonfire" type="Spatial" parent="Enovironment"]
+
+[node name="bonfire" type="MeshInstance" parent="Enovironment/Bonfire"]
+cast_shadow = 0
+mesh = ExtResource( 2 )
+skeleton = NodePath("../../Room/MeshInstance")
+material/0 = SubResource( 17 )
+material/1 = SubResource( 18 )
+material/2 = SubResource( 19 )
+material/3 = SubResource( 20 )
+material/4 = SubResource( 21 )
+material/5 = SubResource( 22 )
+material/6 = SubResource( 23 )
+
+[node name="FireEffect" type="Spatial" parent="Enovironment/Bonfire"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
+
+[node name="FireEffect" type="Particles" parent="Enovironment/Bonfire/FireEffect"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0 )
+amount = 200
+lifetime = 0.5
+randomness = 1.0
+local_coords = false
+draw_order = 2
+process_material = SubResource( 25 )
+draw_pass_1 = SubResource( 26 )
+
+[node name="OmniLight" type="OmniLight" parent="Enovironment/Bonfire"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.475935, 0 )
+light_color = Color( 1, 0.964706, 0.811765, 1 )
+light_energy = 1.1
+shadow_enabled = true
+shadow_bias = 0.05
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enovironment"]
+environment = ExtResource( 9 )
+
+[node name="Trees" type="Spatial" parent="Enovironment"]
+
+[node name="tree" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10676, 0, 0 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree2" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60241, 0, -1.19866 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree3" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72031, 0, 1.31001 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree4" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.449598, 0, 1.91917 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree5" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02416, 0, 1.74886 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree6" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.11802, 0, 0.622255 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree7" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90187, 0, -0.792556 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree8" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762162, 0, -1.66371 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree9" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74435, 0, -1.76196 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree10" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75049, 0, -2.45472 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree11" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.595901, 0, -3.01552 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree12" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.740125, 0, -2.94954 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree13" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91121, 0, -2.43823 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree14" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91121, 0, -1.53822 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree15" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.35655, 0, -0.235187 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree16" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02667, 0, 1.34825 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree17" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00403, 0, 1.90905 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree18" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.904032, 0, 3.10905 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree19" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.267053, 0, 3.02658 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree20" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.47113, 0, 2.30084 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree21" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.84014, 0, 0.832861 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree22" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.64221, 0, -1.01448 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree23" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.51026, 0, -2.05362 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree24" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.61026, 0, -1.45362 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree25" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.41026, 0, -0.253616 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree26" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70101, 0, 2.07206 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree27" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09073, 0, 3.0782 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree28" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.985618, 0, 4.11733 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree29" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99982, 0, 3.16067 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree30" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.13792, 0, 2.43493 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree31" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99562, 0, 0.719538 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree32" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96263, 0, -1.25976 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree33" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.03896, 0, -2.67826 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree34" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95034, 0, -3.53595 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree35" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.59782, 0, -4.06377 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree36" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.837171, 0, -4.14624 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree37" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92579, 0, -3.61842 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree38" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.19584, 0, -2.87619 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree39" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.54836, 0, -0.418559 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree40" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.93807, 0, 0.785514 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree41" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.80612, 0, 2.07206 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree42" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.10612, 0, 3.17206 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree43" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90205, 0, 4.16171 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree44" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225699, 0, 4.02975 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree45" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59471, 0, 4.11223 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="tree46" type="MeshInstance" parent="Enovironment/Trees"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98022, 0, 3.48545 )
+mesh = ExtResource( 13 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 30 )
+material/1 = SubResource( 31 )
+material/2 = SubResource( 32 )
+
+[node name="Road" type="Spatial" parent="Enovironment"]
+
+[node name="road1" type="MeshInstance" parent="Enovironment/Road"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, -5.45947 )
+mesh = SubResource( 34 )
+material/0 = null
+
+[node name="MeshInstance" type="MeshInstance" parent="Enovironment/Road"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98023e-08, 0 )
+mesh = SubResource( 35 )
+material/0 = null
+
+[node name="Sign" type="Spatial" parent="Enovironment"]
+
+[node name="sign" type="MeshInstance" parent="Enovironment/Sign"]
+transform = Transform( -0.848057, 0, -0.529904, 0, 1, 0, 0.529904, 0, -0.848057, -0.66376, 0, -1.35848 )
+material_override = SubResource( 36 )
+mesh = ExtResource( 15 )
+skeleton = NodePath("../../WorldEnvironment")
+material/0 = null
+material/1 = null
+material/2 = null
+
+[node name="Gravestone" type="Spatial" parent="Enovironment"]
+
+[node name="gravestone" type="MeshInstance" parent="Enovironment/Gravestone"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 1.6835 )
+mesh = ExtResource( 14 )
+material/0 = null
+material/1 = null
+
+[node name="Sprite" type="AnimatedSprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.504139, 0, 0.197196 )
+centered = false
+offset = Vector2( -13, 0 )
+billboard = 2
+alpha_cut = 2
+frames = SubResource( 6 )
+frame = 3
+playing = true
+
+[node name="Sprite2" type="AnimatedSprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00187594, 0, -0.538024 )
+centered = false
+offset = Vector2( -13, 0 )
+billboard = 2
+alpha_cut = 2
+frames = SubResource( 11 )
+frame = 1
+playing = true
+
+[node name="Sprite3" type="AnimatedSprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.514423, 0, 0 )
+centered = false
+offset = Vector2( -13, 0 )
+billboard = 2
+alpha_cut = 2
+frames = SubResource( 16 )
+playing = true
+
+[node name="DevCam" parent="." instance=ExtResource( 10 )]

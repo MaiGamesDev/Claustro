@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Enter the Gungeon - The Breach Yawns - OST.ogg-3445a5f6008d133ea01ab49716ab9dba.oggstr"
+
+[deps]
+
+source_file="res://Sound/Bgm/Enter the Gungeon - The Breach Yawns - OST.ogg"
+dest_files=[ "res://.import/Enter the Gungeon - The Breach Yawns - OST.ogg-3445a5f6008d133ea01ab49716ab9dba.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

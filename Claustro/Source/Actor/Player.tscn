@@ -1,0 +1,161 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Source/Actor/Player.gd" type="Script" id=1]
+[ext_resource path="res://Resource/Font/neodgm.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Art/Actor/ippuniger-sheet.png" type="Texture" id=3]
+[ext_resource path="res://Art/Actor/elf-export.png" type="Texture" id=4]
+[ext_resource path="res://Art/Actor/knight.png" type="Texture" id=5]
+
+[sub_resource type="CanvasItemMaterial" id=14]
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 16
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 23
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=6]
+resource_local_to_scene = true
+animations = [ {
+"frames": [ SubResource( 5 ) ],
+"loop": true,
+"name": "mouse",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "cat",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ) ],
+"loop": true,
+"name": "dog",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 33, 16.25 )
+
+[sub_resource type="RectangleShape2D" id=12]
+resource_local_to_scene = true
+extents = Vector2( 35, 40 )
+
+[sub_resource type="DynamicFont" id=15]
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=19]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -5 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "hurt"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Color( 0.580392, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Player" type="Area2D"]
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="Body" type="AnimatedSprite" parent="."]
+material = SubResource( 14 )
+frames = SubResource( 6 )
+animation = "mouse"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2( -2.5, 15.25 )
+shape = SubResource( 1 )
+
+[node name="Block_button" type="TouchScreenButton" parent="."]
+modulate = Color( 0.772549, 0.772549, 0.772549, 1 )
+position = Vector2( -40, -24 )
+shape = SubResource( 12 )
+shape_visible = false
+
+[node name="State" type="Label" parent="."]
+margin_left = -21.0
+margin_top = -41.0
+margin_right = 19.0
+margin_bottom = -27.0
+custom_fonts/font = SubResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 19 )
+anims/attack = SubResource( 18 )
+anims/hurt = SubResource( 20 )
+
+[node name="Block_shape" type="ColorRect" parent="."]
+margin_left = -34.0
+margin_top = -5.0
+margin_right = 30.0
+margin_bottom = 31.0
+color = Color( 0.0392157, 0.443137, 0.639216, 0.670588 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]
+[connection signal="pressed" from="Block_button" to="." method="_on_Block_button_pressed"]
+[connection signal="released" from="Block_button" to="." method="_on_Block_button_released"]

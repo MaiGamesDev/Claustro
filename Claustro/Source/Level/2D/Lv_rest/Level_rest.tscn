@@ -1,0 +1,175 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://Art/Actor/cat.png" type="Texture" id=1]
+[ext_resource path="res://Art/Actor/mouse.png" type="Texture" id=2]
+[ext_resource path="res://Art/Actor/dog.png" type="Texture" id=3]
+[ext_resource path="res://Met_fire.tres" type="Material" id=4]
+[ext_resource path="res://Art/spr_dust.png" type="Texture" id=5]
+[ext_resource path="res://Art/Background/camp_fire.png" type="Texture" id=6]
+[ext_resource path="res://Source/Object/Ptc_auto_emit.gd" type="Script" id=7]
+[ext_resource path="res://Sound/Bgm/OneShot OST - Self Contained Universe (Reprise) Extended.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Art/Background/deer.png" type="Texture" id=9]
+[ext_resource path="res://Source/Level/2D/Lv_rest/Dialog.gd" type="Script" id=10]
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 2 )
+region = Rect2( 26, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 2 )
+region = Rect2( 52, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 2 )
+region = Rect2( 78, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 26, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 52, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 78, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 3 )
+region = Rect2( 26, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 3 )
+region = Rect2( 52, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 3 )
+region = Rect2( 78, 0, 26, 26 )
+
+[sub_resource type="SpriteFrames" id=23]
+animations = [ {
+"frames": [ SubResource( 22 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ],
+"loop": true,
+"name": "mouse",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "cat",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
+"loop": true,
+"name": "dog",
+"speed": 3.0
+} ]
+
+[sub_resource type="Curve" id=32]
+_data = [ Vector2( 0, 0.281818 ), 0.0, 0.0, 0, 0, Vector2( 0.527607, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=33]
+curve = SubResource( 32 )
+
+[sub_resource type="ParticlesMaterial" id=34]
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 20.32
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 54.68
+initial_velocity_random = 0.21
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 6.0
+scale_curve = SubResource( 33 )
+color = Color( 0.376471, 0.376471, 0.376471, 0.25098 )
+
+[node name="Level_rest" type="Node2D"]
+
+[node name="Deer" type="Sprite" parent="."]
+position = Vector2( 90, 160 )
+texture = ExtResource( 9 )
+
+[node name="Player" type="AnimatedSprite" parent="."]
+position = Vector2( 28, 278 )
+frames = SubResource( 23 )
+animation = "cat"
+frame = 3
+playing = true
+
+[node name="Player2" type="AnimatedSprite" parent="."]
+position = Vector2( 143, 278 )
+scale = Vector2( -1, 1 )
+frames = SubResource( 23 )
+animation = "dog"
+frame = 1
+playing = true
+
+[node name="CampFire" type="Sprite" parent="."]
+position = Vector2( 90, 279 )
+texture = ExtResource( 6 )
+
+[node name="Smoke" type="Particles2D" parent="CampFire"]
+show_behind_parent = true
+emitting = false
+amount = 20
+lifetime = 6.0
+process_material = SubResource( 34 )
+texture = ExtResource( 5 )
+script = ExtResource( 7 )
+
+[node name="Fire" type="Particles2D" parent="CampFire"]
+show_behind_parent = true
+position = Vector2( 1, 5 )
+emitting = false
+amount = 50
+lifetime = 0.3
+speed_scale = 0.5
+process_material = ExtResource( 4 )
+texture = ExtResource( 5 )
+script = ExtResource( 7 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Rest_UI" type="Control" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialog" type="Control" parent="CanvasLayer/Rest_UI"]
+margin_left = 24.0
+margin_top = 217.0
+margin_right = 64.0
+margin_bottom = 257.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bgm_rest" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -10.0
+autoplay = true

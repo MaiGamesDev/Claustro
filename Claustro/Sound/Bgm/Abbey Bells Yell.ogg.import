@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Abbey Bells Yell.ogg-ae4b147e95b3a4ee0cd486093ba621fa.oggstr"
+
+[deps]
+
+source_file="res://Sound/Bgm/Abbey Bells Yell.ogg"
+dest_files=[ "res://.import/Abbey Bells Yell.ogg-ae4b147e95b3a4ee0cd486093ba621fa.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

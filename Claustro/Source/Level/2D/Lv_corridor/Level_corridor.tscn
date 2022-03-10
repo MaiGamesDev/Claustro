@@ -1,0 +1,286 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Resource/Font/neodgm.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Art/UI/tp_bg.png" type="Texture" id=2]
+[ext_resource path="res://Art/Background/bg_collidor.png" type="Texture" id=3]
+[ext_resource path="res://Art/UI/hp.png" type="Texture" id=4]
+[ext_resource path="res://Sound/Bgm/Abbey Bells Yell.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Art/UI/hp_bg.png" type="Texture" id=6]
+[ext_resource path="res://Art/UI/backstep_button.png" type="Texture" id=7]
+[ext_resource path="res://Art/UI/tp.png" type="Texture" id=8]
+[ext_resource path="res://Art/UI/ap.png" type="Texture" id=9]
+[ext_resource path="res://Art/UI/tp_max.png" type="Texture" id=10]
+[ext_resource path="res://Art/UI/boss_hp.png" type="Texture" id=11]
+[ext_resource path="res://Art/UI/boss_ap.png" type="Texture" id=12]
+[ext_resource path="res://Art/UI/boss_hp_bg.png" type="Texture" id=13]
+[ext_resource path="res://Art/UI/ap_bg.png" type="Texture" id=14]
+[ext_resource path="res://Art/UI/boss_ap_bg.png" type="Texture" id=15]
+[ext_resource path="res://Source/Actor/Player.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Source/Actor/Boss.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Source/Level/Hallway/Camera.gd" type="Script" id=18]
+[ext_resource path="res://Source/Level/2D/Lv_corridor/Players.gd" type="Script" id=19]
+[ext_resource path="res://Source/Level/2D/Lv_corridor/Level_corridor.gd" type="Script" id=20]
+[ext_resource path="res://Source/Level/2D/Lv_corridor/Enemies.gd" type="Script" id=21]
+[ext_resource path="res://Source/Level/2D/Lv_corridor/In_game_UI.gd" type="Script" id=22]
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 1 )
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 18, 30 )
+
+[node name="Level_corridor" type="Node2D"]
+script = ExtResource( 20 )
+
+[node name="Players" type="Node2D" parent="."]
+script = ExtResource( 19 )
+
+[node name="Player_left" parent="Players" instance=ExtResource( 16 )]
+position = Vector2( 39, 265 )
+
+[node name="Player_right" parent="Players" instance=ExtResource( 16 )]
+position = Vector2( 140, 265 )
+
+[node name="Camera" type="Camera2D" parent="Players"]
+position = Vector2( 90, 160 )
+current = true
+script = ExtResource( 18 )
+
+[node name="Boss_pos" type="Position2D" parent="Players"]
+position = Vector2( 88, 87 )
+
+[node name="Enemies" type="Node2D" parent="."]
+script = ExtResource( 21 )
+
+[node name="Pos_boss" type="Position2D" parent="Enemies"]
+position = Vector2( 88, 87 )
+
+[node name="Boss" parent="Enemies/Pos_boss" instance=ExtResource( 17 )]
+position = Vector2( 0, 0 )
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+
+[node name="In_game_UI" type="Control" parent="Canvas"]
+margin_right = 180.0
+margin_bottom = 320.0
+script = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bg" type="ColorRect" parent="Canvas/In_game_UI"]
+margin_top = 293.0
+margin_right = 180.0
+margin_bottom = 320.0
+color = Color( 0.341176, 0.419608, 0.509804, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player_left_hp" type="TextureProgress" parent="Canvas/In_game_UI"]
+margin_left = 4.0
+margin_top = 296.0
+margin_right = 68.0
+margin_bottom = 312.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hp" type="Label" parent="Canvas/In_game_UI/Player_left_hp"]
+margin_right = 64.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 3 )
+text = "3/3"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player_right_hp" type="TextureProgress" parent="Canvas/In_game_UI"]
+margin_left = 111.0
+margin_top = 296.0
+margin_right = 175.0
+margin_bottom = 312.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hp" type="Label" parent="Canvas/In_game_UI/Player_right_hp"]
+margin_right = 64.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 3 )
+text = "3/3"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player_left_ap" type="TextureProgress" parent="Canvas/In_game_UI"]
+margin_left = 2.0
+margin_top = 265.0
+margin_right = 5.0
+margin_bottom = 295.0
+texture_under = ExtResource( 14 )
+texture_progress = ExtResource( 9 )
+fill_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player_right_ap" type="TextureProgress" parent="Canvas/In_game_UI"]
+margin_left = 177.0
+margin_top = 265.0
+margin_right = 180.0
+margin_bottom = 295.0
+rect_scale = Vector2( -1, 1 )
+texture_under = ExtResource( 14 )
+texture_progress = ExtResource( 9 )
+fill_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player_tp" type="TextureProgress" parent="Canvas/In_game_UI"]
+margin_left = 2.0
+margin_top = 315.0
+margin_right = 178.0
+margin_bottom = 319.0
+rounded = true
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tp_max" type="Sprite" parent="Canvas/In_game_UI/Player_tp"]
+visible = false
+position = Vector2( 88, 2 )
+texture = ExtResource( 10 )
+
+[node name="Backstep_button" type="TouchScreenButton" parent="Canvas/In_game_UI"]
+position = Vector2( 74, 279 )
+normal = ExtResource( 7 )
+shape = SubResource( 17 )
+shape_visible = false
+
+[node name="ColorRect4" type="ColorRect" parent="Canvas/In_game_UI"]
+margin_left = 5.0
+margin_top = 20.0
+margin_right = 175.0
+margin_bottom = 25.0
+color = Color( 0.203922, 0.701961, 0.145098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect5" type="ColorRect" parent="Canvas/In_game_UI/ColorRect4"]
+margin_left = 3.0
+margin_top = -9.0
+margin_right = 20.0
+margin_bottom = 7.0
+color = Color( 0.341176, 0.882353, 0.278431, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect6" type="ColorRect" parent="Canvas/In_game_UI/ColorRect4"]
+margin_left = 52.0
+margin_top = -9.0
+margin_right = 69.0
+margin_bottom = 7.0
+color = Color( 0.341176, 0.882353, 0.278431, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect7" type="ColorRect" parent="Canvas/In_game_UI/ColorRect4"]
+margin_left = 103.0
+margin_top = -9.0
+margin_right = 120.0
+margin_bottom = 7.0
+color = Color( 0.341176, 0.882353, 0.278431, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect8" type="ColorRect" parent="Canvas/In_game_UI/ColorRect4"]
+margin_left = 147.0
+margin_top = -9.0
+margin_right = 164.0
+margin_bottom = 7.0
+color = Color( 0.341176, 0.882353, 0.278431, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect9" type="ColorRect" parent="Canvas/In_game_UI/ColorRect4"]
+margin_left = 35.0
+margin_top = -2.0
+margin_right = 44.0
+margin_bottom = 7.0
+color = Color( 0.862745, 0.882353, 0.278431, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hp2" type="Label" parent="Canvas/In_game_UI/ColorRect4"]
+margin_left = 12.0
+margin_top = -14.0
+margin_right = 158.0
+margin_bottom = 2.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 3 )
+text = "진행도"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Boss_hp" type="TextureProgress" parent="Canvas/In_game_UI"]
+margin_left = 19.0
+margin_top = 34.0
+margin_right = 165.0
+margin_bottom = 54.0
+texture_under = ExtResource( 13 )
+texture_progress = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Boss_ap" type="TextureProgress" parent="Canvas/In_game_UI"]
+visible = false
+margin_left = 42.0
+margin_top = 51.0
+margin_right = 142.0
+margin_bottom = 56.0
+texture_under = ExtResource( 15 )
+texture_progress = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 0, 320 )
+
+[node name="Bg_corridor" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Bgm_battle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.0
+autoplay = true

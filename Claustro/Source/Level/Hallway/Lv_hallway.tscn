@@ -1,0 +1,1512 @@
+[gd_scene load_steps=106 format=2]
+
+[ext_resource path="res://Art/UI/tp_bg.png" type="Texture" id=1]
+[ext_resource path="res://Art/UI/icon_cat.png" type="Texture" id=2]
+[ext_resource path="res://Art/Actor/cat_battle.png" type="Texture" id=3]
+[ext_resource path="res://Art/UI/cc_attack.png" type="Texture" id=4]
+[ext_resource path="res://Art/UI/cc_defence.png" type="Texture" id=5]
+[ext_resource path="res://Art/Actor/dog_battle.png" type="Texture" id=6]
+[ext_resource path="res://Art/UI/tp.png" type="Texture" id=7]
+[ext_resource path="res://Art/Actor/slime_sheet.png" type="Texture" id=8]
+[ext_resource path="res://Source/Level/Hallway/Lv_hallway.gd" type="Script" id=9]
+[ext_resource path="res://Source/Level/Hallway/Camera.gd" type="Script" id=10]
+[ext_resource path="res://Source/Main/DevCam.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Source/Level/Hallway/Enemy.gd" type="Script" id=12]
+[ext_resource path="res://Source/Level/Hallway/UIManager.gd" type="Script" id=13]
+[ext_resource path="res://Source/Level/Hallway/PlayerManager.gd" type="Script" id=14]
+[ext_resource path="res://Source/Object/Chest.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Source/Level/Hallway/EnemyManager.gd" type="Script" id=16]
+[ext_resource path="res://Mesh/Bulb/bulb.obj" type="ArrayMesh" id=17]
+[ext_resource path="res://Mesh/Bulb/bulb_stand.obj" type="ArrayMesh" id=18]
+[ext_resource path="res://Mesh/Door/door.obj" type="ArrayMesh" id=19]
+[ext_resource path="res://Mesh/Room/wall.png" type="Texture" id=20]
+[ext_resource path="res://Mesh/Door/door_frame.obj" type="ArrayMesh" id=21]
+[ext_resource path="res://game_env.tres" type="Environment" id=22]
+[ext_resource path="res://Source/Level/Hallway/EventCollision.gd" type="Script" id=23]
+[ext_resource path="res://Art/UI/sc_heal.png" type="Texture" id=24]
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "enemy_side"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "left_side"
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "left_side2"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "right_side"
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+animation = "right_side2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+
+[sub_resource type="AnimationNodeStateMachine" id=6]
+resource_local_to_scene = true
+states/enemy_side/node = SubResource( 14 )
+states/enemy_side/position = Vector2( 130, 211 )
+states/left_side/node = SubResource( 2 )
+states/left_side/position = Vector2( 114, 64 )
+states/left_side2/node = SubResource( 28 )
+states/left_side2/position = Vector2( 289, 64 )
+states/right_side/node = SubResource( 10 )
+states/right_side/position = Vector2( 213, 124 )
+states/right_side2/node = SubResource( 29 )
+states/right_side2/position = Vector2( 408, 129 )
+transitions = [ "enemy_side", "left_side", SubResource( 22 ), "left_side", "left_side2", SubResource( 30 ), "left_side2", "right_side", SubResource( 31 ), "right_side", "right_side2", SubResource( 32 ), "right_side2", "enemy_side", SubResource( 33 ) ]
+start_node = "left_side"
+graph_offset = Vector2( -49, -6 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+loop = true
+
+[sub_resource type="Animation" id=15]
+resource_name = "enemy_side"
+tracks/0/type = "method"
+tracks/0/path = NodePath("Player/Camera")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ Vector3( -30, 0, 0 ) ],
+"method": "rotate_camera"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Player/Camera")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ Vector3( 0, 1, 0.3 ) ],
+"method": "move_camera"
+} ]
+}
+tracks/2/type = "animation"
+tracks/2/path = NodePath("UI/UI/UIAnimation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": PoolStringArray( "E1" ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "left_side"
+tracks/0/type = "method"
+tracks/0/path = NodePath("Player/Camera")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ Vector3( -10, -10, 0 ) ],
+"method": "rotate_camera"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Player/Camera")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ Vector3( -0.3, 0.5, 0.5 ) ],
+"method": "move_camera"
+} ]
+}
+tracks/2/type = "animation"
+tracks/2/path = NodePath("UI/UI/UIAnimation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": PoolStringArray( "P1" ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "right_side"
+tracks/0/type = "method"
+tracks/0/path = NodePath("Player/Camera")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ Vector3( -10, 10, 0 ) ],
+"method": "rotate_camera"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Player/Camera")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ Vector3( 0.3, 0.5, 0.5 ) ],
+"method": "move_camera"
+} ]
+}
+tracks/2/type = "animation"
+tracks/2/path = NodePath("UI/UI/UIAnimation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": PoolStringArray( "P2" ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="BoxShape" id=78]
+extents = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="BoxShape" id=79]
+extents = Vector3( 0.1, 0.2, 0.1 )
+
+[sub_resource type="Animation" id=71]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=72]
+resource_name = "hurt"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.658824, 0.176471, 0.152941, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="SpatialMaterial" id=82]
+flags_transparent = true
+albedo_color = Color( 0, 0.0431373, 0.94902, 0.588235 )
+
+[sub_resource type="SphereMesh" id=83]
+material = SubResource( 82 )
+radius = 0.2
+height = 0.3
+
+[sub_resource type="BoxShape" id=75]
+extents = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="BoxShape" id=76]
+extents = Vector3( 0.1, 0.2, 0.1 )
+
+[sub_resource type="Animation" id=73]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=74]
+resource_name = "hurt"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.658824, 0.176471, 0.152941, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="SpatialMaterial" id=84]
+flags_transparent = true
+albedo_color = Color( 1, 0, 0, 0.588235 )
+
+[sub_resource type="SphereMesh" id=85]
+material = SubResource( 84 )
+radius = 0.2
+height = 0.3
+
+[sub_resource type="BoxShape" id=113]
+extents = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="AtlasTexture" id=36]
+flags = 16
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 50, 40 )
+
+[sub_resource type="AtlasTexture" id=37]
+flags = 16
+atlas = ExtResource( 8 )
+region = Rect2( 200, 0, 50, 40 )
+
+[sub_resource type="AtlasTexture" id=38]
+flags = 16
+atlas = ExtResource( 8 )
+region = Rect2( 250, 0, 50, 40 )
+
+[sub_resource type="AtlasTexture" id=39]
+flags = 16
+atlas = ExtResource( 8 )
+region = Rect2( 300, 0, 50, 40 )
+
+[sub_resource type="AtlasTexture" id=42]
+flags = 16
+atlas = ExtResource( 8 )
+region = Rect2( 150, 0, 50, 40 )
+
+[sub_resource type="AtlasTexture" id=40]
+flags = 16
+atlas = ExtResource( 8 )
+region = Rect2( 50, 0, 50, 40 )
+
+[sub_resource type="AtlasTexture" id=41]
+flags = 16
+atlas = ExtResource( 8 )
+region = Rect2( 100, 0, 50, 40 )
+
+[sub_resource type="SpriteFrames" id=43]
+animations = [ {
+"frames": [ SubResource( 36 ) ],
+"loop": false,
+"name": "idle",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
+"loop": false,
+"name": "die",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 42 ) ],
+"loop": false,
+"name": "hurt",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 40 ), SubResource( 40 ), SubResource( 41 ), SubResource( 40 ) ],
+"loop": false,
+"name": "attack",
+"speed": 3.0
+} ]
+
+[sub_resource type="BoxShape" id=80]
+extents = Vector3( 0.2, 0.2, 0.1 )
+
+[sub_resource type="BoxShape" id=81]
+extents = Vector3( 0.2, 0.2, 0.1 )
+
+[sub_resource type="AnimationNodeAnimation" id=59]
+animation = "attack_P2"
+
+[sub_resource type="AnimationNodeAnimation" id=60]
+animation = "attack_P1"
+
+[sub_resource type="AnimationNodeAnimation" id=46]
+animation = "attack_P1"
+
+[sub_resource type="AnimationNodeAnimation" id=47]
+animation = "die"
+
+[sub_resource type="AnimationNodeAnimation" id=48]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=66]
+animation = "turn_end"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=61]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=67]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=68]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=52]
+states/attack/node = SubResource( 46 )
+states/attack/position = Vector2( 123, 1 )
+"states/attack 2/node" = SubResource( 59 )
+"states/attack 2/position" = Vector2( 282, 1 )
+"states/attack 3/node" = SubResource( 60 )
+"states/attack 3/position" = Vector2( 444, 7 )
+states/die/node = SubResource( 47 )
+states/die/position = Vector2( 123, 162 )
+states/idle/node = SubResource( 48 )
+states/idle/position = Vector2( 118, 79 )
+states/turn_end/node = SubResource( 66 )
+states/turn_end/position = Vector2( 444, 71 )
+transitions = [ "idle", "attack", SubResource( 49 ), "idle", "die", SubResource( 51 ), "attack", "attack 2", SubResource( 61 ), "attack 2", "attack 3", SubResource( 62 ), "attack 3", "turn_end", SubResource( 67 ), "turn_end", "idle", SubResource( 68 ) ]
+start_node = "idle"
+end_node = "die"
+graph_offset = Vector2( 0, -56 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=53]
+
+[sub_resource type="Animation" id=44]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:pixel_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.01 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "idle" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=54]
+resource_name = "attack_P1"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "attack" ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ true ],
+"method": "shoot"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=64]
+resource_name = "attack_P2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "attack" ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ false ],
+"method": "shoot"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=55]
+resource_name = "die"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "die" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "die"
+} ]
+}
+
+[sub_resource type="Animation" id=45]
+resource_name = "idle"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:pixel_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2, 1.5, 2.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.01, 0.0105, 0.0105, 0.01 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "idle" ]
+}
+
+[sub_resource type="Animation" id=65]
+resource_name = "turn_end"
+tracks/0/type = "method"
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "turn_end"
+} ]
+}
+
+[sub_resource type="Animation" id=69]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=70]
+resource_name = "hurt"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.376471, 0.0156863, 0.0156863, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="BoxShape" id=114]
+extents = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 1, 2 )
+
+[sub_resource type="ConvexPolygonShape" id=112]
+points = PoolVector3Array( 0.5, 0, 1, -0.5, 0, 1, 0.5, 0, -1, -0.5, 0, -1 )
+
+[sub_resource type="PlaneMesh" id=88]
+size = Vector2( 1, 2 )
+
+[sub_resource type="PlaneMesh" id=86]
+size = Vector2( 2, 1.4 )
+
+[sub_resource type="SpatialMaterial" id=102]
+albedo_texture = ExtResource( 20 )
+uv1_scale = Vector3( 0, 8, 1 )
+
+[sub_resource type="PlaneMesh" id=87]
+size = Vector2( 2, 1.4 )
+
+[sub_resource type="SpatialMaterial" id=103]
+albedo_texture = ExtResource( 20 )
+uv1_scale = Vector3( 1, 8, 1 )
+
+[sub_resource type="PlaneMesh" id=101]
+size = Vector2( 1, 1.4 )
+
+[sub_resource type="SpatialMaterial" id=104]
+albedo_texture = ExtResource( 20 )
+uv1_scale = Vector3( 1, 8, 1 )
+
+[sub_resource type="SpatialMaterial" id=105]
+albedo_texture = ExtResource( 20 )
+uv1_scale = Vector3( 1, 8, 1 )
+
+[sub_resource type="PlaneMesh" id=106]
+material = SubResource( 105 )
+size = Vector2( 1, 1.4 )
+
+[sub_resource type="SpatialMaterial" id=109]
+albedo_color = Color( 0.0431373, 0.823529, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=110]
+albedo_color = Color( 0.0431373, 0.823529, 0, 1 )
+
+[sub_resource type="PlaneMesh" id=111]
+size = Vector2( 1, 0.75 )
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 50, 30 )
+
+[sub_resource type="Animation" id=56]
+resource_name = "E1"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/UI/BasicCommand:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/UI/DefenceCommand:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "P1"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/UI/BasicCommand:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/UI/DefenceCommand:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=57]
+resource_name = "P2"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/UI/BasicCommand:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/UI/DefenceCommand:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=58]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/UI/BasicCommand:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/UI/DefenceCommand:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[node name="Level" type="Node"]
+script = ExtResource( 9 )
+
+[node name="Chest" parent="." instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.683415, -6.18024 )
+
+[node name="Player" type="Spatial" parent="."]
+script = ExtResource( 14 )
+
+[node name="Camera" type="Camera" parent="Player"]
+transform = Transform( 0.984808, -0.0301536, 0.17101, 0, 0.984808, 0.173648, -0.173648, -0.17101, 0.969846, 0.3, 0.5, 0.4 )
+current = true
+fov = 90.0
+script = ExtResource( 10 )
+
+[node name="Tween" type="Tween" parent="Player/Camera"]
+
+[node name="Tween2" type="Tween" parent="Player/Camera"]
+
+[node name="AnimationTree" type="AnimationTree" parent="Player/Camera"]
+tree_root = SubResource( 6 )
+anim_player = NodePath("Animation")
+active = true
+process_mode = 0
+parameters/playback = SubResource( 7 )
+
+[node name="Animation" type="AnimationPlayer" parent="Player/Camera/AnimationTree"]
+root_node = NodePath("../../../..")
+autoplay = "RESET"
+anims/RESET = SubResource( 8 )
+anims/enemy_side = SubResource( 15 )
+anims/left_side = SubResource( 9 )
+anims/right_side = SubResource( 13 )
+
+[node name="Player1" type="RigidBody" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0, 0 )
+collision_layer = 4
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite3D" parent="Player/Player1"]
+centered = false
+offset = Vector2( -13, 0 )
+alpha_cut = 2
+texture = ExtResource( 3 )
+
+[node name="GroundBox" type="CollisionShape" parent="Player/Player1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
+shape = SubResource( 78 )
+
+[node name="HurtBox" type="Area" parent="Player/Player1"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Player/Player1/HurtBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+shape = SubResource( 79 )
+
+[node name="AnimationTree" type="AnimationTree" parent="Player/Player1"]
+anim_player = NodePath("Animation")
+
+[node name="Animation" type="AnimationPlayer" parent="Player/Player1/AnimationTree"]
+
+[node name="StatusEffect" type="AnimationPlayer" parent="Player/Player1/AnimationTree"]
+anims/RESET = SubResource( 71 )
+anims/hurt = SubResource( 72 )
+
+[node name="Shield" type="MeshInstance" parent="Player/Player1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, 0.135, 0.001 )
+visible = false
+mesh = SubResource( 83 )
+material/0 = null
+
+[node name="Player2" type="RigidBody" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, 0 )
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite3D" parent="Player/Player2"]
+centered = false
+offset = Vector2( -13, 0 )
+flip_h = true
+alpha_cut = 2
+texture = ExtResource( 6 )
+
+[node name="GroundBox" type="CollisionShape" parent="Player/Player2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
+shape = SubResource( 75 )
+
+[node name="HurtBox" type="Area" parent="Player/Player2"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Player/Player2/HurtBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+shape = SubResource( 76 )
+
+[node name="AnimationTree" type="AnimationTree" parent="Player/Player2"]
+
+[node name="Animation" type="AnimationPlayer" parent="Player/Player2/AnimationTree"]
+
+[node name="StatusEffect" type="AnimationPlayer" parent="Player/Player2/AnimationTree"]
+anims/RESET = SubResource( 73 )
+anims/hurt = SubResource( 74 )
+
+[node name="Shield" type="MeshInstance" parent="Player/Player2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001, 0.135, 0.001 )
+visible = false
+mesh = SubResource( 85 )
+material/0 = null
+
+[node name="PlayerCollision" type="Area" parent="Player"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Player/PlayerCollision"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.145944, 0 )
+shape = SubResource( 113 )
+
+[node name="Event" type="Spatial" parent="."]
+script = ExtResource( 16 )
+
+[node name="Event1" type="Spatial" parent="Event"]
+
+[node name="Enemy" type="RigidBody" parent="Event/Event1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9 )
+collision_layer = 16
+sleeping = true
+script = ExtResource( 12 )
+
+[node name="Sprite" type="AnimatedSprite3D" parent="Event/Event1/Enemy"]
+centered = false
+offset = Vector2( -25, 0 )
+alpha_cut = 2
+frames = SubResource( 43 )
+animation = "idle"
+playing = true
+
+[node name="HealthBar" type="Sprite3D" parent="Event/Event1/Enemy"]
+transform = Transform( 0.6, 0, 0, 0, 0.4, 0, 0, 0, 1, 0, 0.4, 0 )
+billboard = 1
+
+[node name="Viewport" type="Viewport" parent="Event/Event1/Enemy/HealthBar"]
+size = Vector2( 80, 14 )
+hdr = false
+disable_3d = true
+usage = 0
+render_target_v_flip = true
+render_target_update_mode = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="Event/Event1/Enemy/HealthBar/Viewport"]
+modulate = Color( 0.639216, 0, 0, 1 )
+margin_right = 80.0
+margin_bottom = 14.0
+max_value = 10.0
+step = 1.0
+value = 1.0
+
+[node name="GroundBox" type="CollisionShape" parent="Event/Event1/Enemy"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24, 0 )
+shape = SubResource( 80 )
+
+[node name="HurtBox" type="Area" parent="Event/Event1/Enemy"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Event/Event1/Enemy/HurtBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0 )
+shape = SubResource( 81 )
+
+[node name="ShootPos" type="Position3D" parent="Event/Event1/Enemy"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0871196, 0.0832433, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="Event/Event1/Enemy"]
+tree_root = SubResource( 52 )
+anim_player = NodePath("Animation")
+active = true
+parameters/playback = SubResource( 53 )
+
+[node name="Animation" type="AnimationPlayer" parent="Event/Event1/Enemy/AnimationTree"]
+anims/RESET = SubResource( 44 )
+anims/attack_P1 = SubResource( 54 )
+anims/attack_P2 = SubResource( 64 )
+anims/die = SubResource( 55 )
+anims/idle = SubResource( 45 )
+anims/turn_end = SubResource( 65 )
+
+[node name="StatusEffect" type="AnimationPlayer" parent="Event/Event1/Enemy/AnimationTree"]
+anims/RESET = SubResource( 69 )
+anims/hurt = SubResource( 70 )
+
+[node name="ChestSpawnPos" type="Position3D" parent="Event/Event1/Enemy"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="EventCollision" type="Area" parent="Event/Event1"]
+script = ExtResource( 23 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Event/Event1/EventCollision"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.144623, 0 )
+shape = SubResource( 114 )
+
+[node name="Event2" type="Spatial" parent="Event"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.17799 )
+
+[node name="EventCollision" type="Area" parent="Event/Event2"]
+script = ExtResource( 23 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Event/Event2/EventCollision"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.144623, 0 )
+shape = SubResource( 114 )
+
+[node name="Event3" type="Spatial" parent="Event"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.8281 )
+
+[node name="EventCollision" type="Area" parent="Event/Event3"]
+script = ExtResource( 23 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Event/Event3/EventCollision"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.144623, 0 )
+shape = SubResource( 114 )
+
+[node name="Event4" type="Spatial" parent="Event"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -27.1166 )
+
+[node name="EventCollision" type="Area" parent="Event/Event4"]
+script = ExtResource( 23 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Event/Event4/EventCollision"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.144623, 0 )
+shape = SubResource( 114 )
+
+[node name="Environment" type="Spatial" parent="."]
+
+[node name="Room" type="Spatial" parent="Environment"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, -14.3 )
+
+[node name="Ground" type="StaticBody" parent="Environment/Room"]
+transform = Transform( 1, 0, 0, 0, 0.988, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Environment/Room/Ground"]
+mesh = SubResource( 1 )
+skeleton = NodePath("../../../..")
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/Room/Ground"]
+shape = SubResource( 112 )
+
+[node name="Celling" type="StaticBody" parent="Environment/Room"]
+transform = Transform( -1, 8.63737e-08, 0, -8.74228e-08, -0.988, 0, 0, 0, 1, 0, 1.4, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Environment/Room/Celling"]
+mesh = SubResource( 88 )
+skeleton = NodePath("../../../..")
+material/0 = null
+
+[node name="Wall" type="StaticBody" parent="Environment/Room"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Environment/Room/Wall"]
+transform = Transform( -4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, -1, -1, -4.37114e-08, -4.37114e-08, -0.5, 0.7, 0 )
+mesh = SubResource( 86 )
+material/0 = SubResource( 102 )
+
+[node name="Wall2" type="StaticBody" parent="Environment/Room"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Environment/Room/Wall2"]
+transform = Transform( -4.37114e-08, -1, 0, -4.37114e-08, 1.91068e-15, -1, 1, -4.37114e-08, -4.37114e-08, 0.5, 0.7, 0 )
+mesh = SubResource( 87 )
+material/0 = SubResource( 103 )
+
+[node name="Wall3" type="StaticBody" parent="Environment/Room"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Environment/Room/Wall3"]
+transform = Transform( -1, 8.74228e-08, 4.37114e-08, -4.37114e-08, 1.91069e-15, -1, -8.74228e-08, -1, 1.91069e-15, 0, 0.7, 1 )
+mesh = SubResource( 101 )
+material/0 = SubResource( 104 )
+
+[node name="Wall4" type="StaticBody" parent="Environment/Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Environment/Room/Wall4"]
+transform = Transform( 1, 0, -4.37114e-08, -4.37114e-08, 1.91069e-15, -1, 0, 1, 1.91069e-15, 0, 0.7, 1.1 )
+mesh = SubResource( 106 )
+material/0 = null
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Environment"]
+transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.783297, 2.5 )
+light_energy = 0.5
+
+[node name="Object" type="Spatial" parent="Environment"]
+
+[node name="Bulb" type="Spatial" parent="Environment/Object"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -0.531641 )
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bulb_stand" type="MeshInstance" parent="Environment/Object/Bulb"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0 )
+mesh = ExtResource( 18 )
+skeleton = NodePath("../../../..")
+material/0 = null
+material/1 = null
+
+[node name="bulb" type="MeshInstance" parent="Environment/Object/Bulb"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
+mesh = ExtResource( 17 )
+material/0 = null
+
+[node name="OmniLight" type="OmniLight" parent="Environment/Object/Bulb/bulb"]
+shadow_enabled = true
+shadow_bias = 0.02
+omni_range = 3.0
+
+[node name="Door" type="Spatial" parent="Environment/Object"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.45058e-09, 0, -11.012 )
+
+[node name="door" type="MeshInstance" parent="Environment/Object/Door"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.205, 0, 0 )
+mesh = ExtResource( 19 )
+material/0 = SubResource( 109 )
+
+[node name="door2" type="MeshInstance" parent="Environment/Object/Door"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.205, 0, 0 )
+mesh = ExtResource( 19 )
+material/0 = SubResource( 110 )
+
+[node name="frame" type="MeshInstance" parent="Environment/Object/Door"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45058e-09, 0, 0 )
+mesh = ExtResource( 21 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
+
+[node name="MeshInstance" type="MeshInstance" parent="Environment/Object/Door"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.03, 0 )
+mesh = SubResource( 111 )
+material/0 = null
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = ExtResource( 22 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="UI"]
+margin_right = 202.0
+margin_bottom = 360.0
+script = ExtResource( 13 )
+
+[node name="BasicCommand" type="Control" parent="UI/UI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cancel" type="Button" parent="UI/UI/BasicCommand"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 202.0
+margin_bottom = 360.0
+flat = true
+
+[node name="Skill" type="HBoxContainer" parent="UI/UI/BasicCommand"]
+margin_top = 283.0
+margin_right = 202.0
+margin_bottom = 387.0
+mouse_filter = 2
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="VBoxContainer" parent="UI/UI/BasicCommand/Skill"]
+margin_left = 11.0
+margin_right = 53.0
+margin_bottom = 104.0
+
+[node name="Space" type="Control" parent="UI/UI/BasicCommand/Skill/Container"]
+margin_right = 42.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Skill1" type="Button" parent="UI/UI/BasicCommand/Skill/Container"]
+margin_top = 34.0
+margin_right = 42.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 42, 70 )
+flat = true
+
+[node name="Sprite" type="Sprite" parent="UI/UI/BasicCommand/Skill/Container/Skill1"]
+show_behind_parent = true
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Label" type="Label" parent="UI/UI/BasicCommand/Skill/Container/Skill1"]
+show_behind_parent = true
+margin_top = 5.0
+margin_right = 42.0
+margin_bottom = 19.0
+text = "Attack"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="UI/UI/BasicCommand/Skill/Container"]
+
+[node name="Container2" type="VBoxContainer" parent="UI/UI/BasicCommand/Skill"]
+margin_left = 57.0
+margin_right = 99.0
+margin_bottom = 104.0
+
+[node name="Space" type="Control" parent="UI/UI/BasicCommand/Skill/Container2"]
+margin_right = 42.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Skill2" type="Button" parent="UI/UI/BasicCommand/Skill/Container2"]
+margin_top = 34.0
+margin_right = 42.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 42, 70 )
+flat = true
+
+[node name="Sprite" type="Sprite" parent="UI/UI/BasicCommand/Skill/Container2/Skill2"]
+show_behind_parent = true
+texture = ExtResource( 24 )
+centered = false
+
+[node name="Label" type="Label" parent="UI/UI/BasicCommand/Skill/Container2/Skill2"]
+show_behind_parent = true
+margin_top = 5.0
+margin_right = 42.0
+margin_bottom = 19.0
+text = "Fend"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="UI/UI/BasicCommand/Skill/Container2"]
+
+[node name="Container3" type="VBoxContainer" parent="UI/UI/BasicCommand/Skill"]
+margin_left = 103.0
+margin_right = 145.0
+margin_bottom = 104.0
+
+[node name="Space" type="Control" parent="UI/UI/BasicCommand/Skill/Container3"]
+margin_right = 42.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Skill3" type="Button" parent="UI/UI/BasicCommand/Skill/Container3"]
+margin_top = 34.0
+margin_right = 42.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 42, 70 )
+flat = true
+
+[node name="Sprite" type="Sprite" parent="UI/UI/BasicCommand/Skill/Container3/Skill3"]
+show_behind_parent = true
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Label" type="Label" parent="UI/UI/BasicCommand/Skill/Container3/Skill3"]
+show_behind_parent = true
+margin_top = 5.0
+margin_right = 42.0
+margin_bottom = 19.0
+text = "Attack"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="UI/UI/BasicCommand/Skill/Container3"]
+
+[node name="Container4" type="VBoxContainer" parent="UI/UI/BasicCommand/Skill"]
+margin_left = 149.0
+margin_right = 191.0
+margin_bottom = 104.0
+
+[node name="Space" type="Control" parent="UI/UI/BasicCommand/Skill/Container4"]
+margin_right = 42.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Skill4" type="Button" parent="UI/UI/BasicCommand/Skill/Container4"]
+margin_top = 34.0
+margin_right = 42.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 42, 70 )
+flat = true
+
+[node name="Sprite" type="Sprite" parent="UI/UI/BasicCommand/Skill/Container4/Skill4"]
+show_behind_parent = true
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Label" type="Label" parent="UI/UI/BasicCommand/Skill/Container4/Skill4"]
+show_behind_parent = true
+margin_top = 5.0
+margin_right = 42.0
+margin_bottom = 19.0
+text = "Fend"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="UI/UI/BasicCommand/Skill/Container4"]
+
+[node name="DefenceCommand" type="Control" parent="UI/UI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Defence1" type="TouchScreenButton" parent="UI/UI/DefenceCommand"]
+position = Vector2( 0, 299 )
+shape = SubResource( 23 )
+
+[node name="Defence2" type="TouchScreenButton" parent="UI/UI/DefenceCommand"]
+position = Vector2( 102, 299 )
+shape = SubResource( 23 )
+
+[node name="UIAnimation" type="AnimationPlayer" parent="UI/UI"]
+root_node = NodePath("../../..")
+autoplay = "P1"
+anims/E1 = SubResource( 56 )
+anims/P1 = SubResource( 27 )
+anims/P2 = SubResource( 57 )
+anims/RESET = SubResource( 58 )
+
+[node name="State" type="Control" parent="UI/UI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="ColorRect" parent="UI/UI/State"]
+margin_right = 202.0
+margin_bottom = 40.0
+color = Color( 0.356863, 0.470588, 0.576471, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="APBar" type="TextureProgress" parent="UI/UI/State"]
+margin_left = 11.0
+margin_top = 40.0
+margin_right = 187.0
+margin_bottom = 44.0
+value = 10.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/State"]
+margin_right = 202.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Progress" type="Control" parent="UI/UI/State/VBoxContainer"]
+margin_right = 202.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Bar" type="ColorRect" parent="UI/UI/State/VBoxContainer/Progress"]
+margin_left = 5.0
+margin_top = 11.0
+margin_right = 197.0
+margin_bottom = 14.0
+color = Color( 0.247059, 0.588235, 0.105882, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Point1" type="ColorRect" parent="UI/UI/State/VBoxContainer/Progress"]
+margin_left = 11.0
+margin_top = 6.0
+margin_right = 17.0
+margin_bottom = 20.0
+color = Color( 0.945098, 0.8, 0.223529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Point2" type="ColorRect" parent="UI/UI/State/VBoxContainer/Progress"]
+margin_left = 57.0
+margin_top = 6.0
+margin_right = 63.0
+margin_bottom = 20.0
+color = Color( 0.945098, 0.8, 0.223529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Point3" type="ColorRect" parent="UI/UI/State/VBoxContainer/Progress"]
+margin_left = 103.0
+margin_top = 6.0
+margin_right = 109.0
+margin_bottom = 20.0
+color = Color( 0.945098, 0.8, 0.223529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Point4" type="ColorRect" parent="UI/UI/State/VBoxContainer/Progress"]
+margin_left = 145.0
+margin_top = 6.0
+margin_right = 151.0
+margin_bottom = 20.0
+color = Color( 0.945098, 0.8, 0.223529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Point5" type="ColorRect" parent="UI/UI/State/VBoxContainer/Progress"]
+margin_left = 187.0
+margin_top = 6.0
+margin_right = 193.0
+margin_bottom = 20.0
+color = Color( 0.945098, 0.8, 0.223529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentPoint" type="Sprite" parent="UI/UI/State/VBoxContainer/Progress"]
+position = Vector2( 40, 14 )
+texture = ExtResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UI/State/VBoxContainer"]
+margin_top = 26.0
+margin_right = 202.0
+margin_bottom = 40.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerHp1" type="Label" parent="UI/UI/State/VBoxContainer/HBoxContainer"]
+margin_left = 40.0
+margin_right = 77.0
+margin_bottom = 14.0
+text = "10/10"
+
+[node name="Control" type="Control" parent="UI/UI/State/VBoxContainer/HBoxContainer"]
+margin_left = 81.0
+margin_right = 121.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 40, 0 )
+
+[node name="PlayerHp2" type="Label" parent="UI/UI/State/VBoxContainer/HBoxContainer"]
+margin_left = 125.0
+margin_right = 162.0
+margin_bottom = 14.0
+text = "10/10"
+
+[node name="DevCam" parent="." instance=ExtResource( 11 )]
+
+[connection signal="player1_hp_updated" from="Player" to="UI/UI" method="_on_player1_hp_updated"]
+[connection signal="player2_hp_updated" from="Player" to="UI/UI" method="_on_player2_hp_updated"]
+[connection signal="player_hurted" from="Player" to="UI/UI" method="_on_player_hurted"]
+[connection signal="body_entered" from="Player/Player1/HurtBox" to="Player" method="_on_Player1_hurted"]
+[connection signal="body_entered" from="Player/Player2/HurtBox" to="Player" method="_on_Player2_hurted"]
+[connection signal="area_entered" from="Player/PlayerCollision" to="Player" method="_on_PlayerCollision_area_entered"]
+[connection signal="enemy_died" from="Event/Event1/Enemy" to="Player" method="_on_Enemy_died"]
+[connection signal="turn_finished" from="Event/Event1/Enemy" to="UI/UI" method="_on_Enemy_turn_finished"]
+[connection signal="enemy_turn_started" from="UI/UI" to="Event/Event1/Enemy" method="_on_enemy_turn_started"]
+[connection signal="player_attacked" from="UI/UI" to="Event/Event1/Enemy" method="_on_player_attacked"]
+[connection signal="turn_changed" from="UI/UI" to="Player/Camera" method="_on_UI_turn_changed"]
+[connection signal="mouse_entered" from="UI/UI/BasicCommand/Skill/Container/Skill1" to="UI/UI" method="_on_Skill1_mouse_entered"]
+[connection signal="mouse_exited" from="UI/UI/BasicCommand/Skill/Container/Skill1" to="UI/UI" method="_on_Skill1_mouse_exited"]
+[connection signal="pressed" from="UI/UI/BasicCommand/Skill/Container/Skill1" to="UI/UI" method="_on_Skill1_pressed"]
+[connection signal="mouse_entered" from="UI/UI/BasicCommand/Skill/Container2/Skill2" to="UI/UI" method="_on_Skill2_mouse_entered"]
+[connection signal="mouse_exited" from="UI/UI/BasicCommand/Skill/Container2/Skill2" to="UI/UI" method="_on_Skill2_mouse_exited"]
+[connection signal="pressed" from="UI/UI/BasicCommand/Skill/Container2/Skill2" to="UI/UI" method="_on_Skill2_pressed"]
+[connection signal="mouse_entered" from="UI/UI/BasicCommand/Skill/Container3/Skill3" to="UI/UI" method="_on_Skill3_mouse_entered"]
+[connection signal="mouse_exited" from="UI/UI/BasicCommand/Skill/Container3/Skill3" to="UI/UI" method="_on_Skill3_mouse_exited"]
+[connection signal="pressed" from="UI/UI/BasicCommand/Skill/Container3/Skill3" to="UI/UI" method="_on_Skill3_pressed"]
+[connection signal="mouse_entered" from="UI/UI/BasicCommand/Skill/Container4/Skill4" to="UI/UI" method="_on_Skill4_mouse_entered"]
+[connection signal="mouse_exited" from="UI/UI/BasicCommand/Skill/Container4/Skill4" to="UI/UI" method="_on_Skill4_mouse_exited"]
+[connection signal="pressed" from="UI/UI/BasicCommand/Skill/Container4/Skill4" to="UI/UI" method="_on_Skill4_pressed"]

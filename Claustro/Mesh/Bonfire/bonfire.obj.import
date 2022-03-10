@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/bonfire.obj-87af1672f9f9bbee04426e70a9ed2faf.mesh"
+
+[deps]
+
+files=[ "res://.import/bonfire.obj-87af1672f9f9bbee04426e70a9ed2faf.mesh" ]
+
+source_file="res://Mesh/Bonfire/bonfire.obj"
+dest_files=[ "res://.import/bonfire.obj-87af1672f9f9bbee04426e70a9ed2faf.mesh", "res://.import/bonfire.obj-87af1672f9f9bbee04426e70a9ed2faf.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

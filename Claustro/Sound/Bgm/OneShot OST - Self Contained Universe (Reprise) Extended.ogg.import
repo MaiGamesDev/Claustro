@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/OneShot OST - Self Contained Universe (Reprise) Extended.ogg-8a89494340d9928e13403491cb9ab6fe.oggstr"
+
+[deps]
+
+source_file="res://Sound/Bgm/OneShot OST - Self Contained Universe (Reprise) Extended.ogg"
+dest_files=[ "res://.import/OneShot OST - Self Contained Universe (Reprise) Extended.ogg-8a89494340d9928e13403491cb9ab6fe.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
