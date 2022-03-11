@@ -29,6 +29,11 @@ func _physics_process(delta):
 func _process(delta):
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		shoot()
-		
+
 func shoot():
 	$AnimationPlayer.play("shoot")
+	
+	var bullet = load("res://Source/Object/Tank_bullet.tscn").instance()
+	bullet.velocity = Basis().x.rotated(Basis().x, $Turret.rotation_degrees.y)
+	bullet.translation = $Turret/gun/FirePoint.translation
+	add_child(bullet)
