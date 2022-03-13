@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sc_defence.png-e229392e35005a1f59e03827d12bb043.stex"
+path="res://.import/sc_magicball.png-00b7f28689e1e614e4cddd6c6afaf6e8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/UI/sc_defence.png"
-dest_files=[ "res://.import/sc_defence.png-e229392e35005a1f59e03827d12bb043.stex" ]
+source_file="res://Art/UI/Skill_card/cat/sc_magicball.png"
+dest_files=[ "res://.import/sc_magicball.png-00b7f28689e1e614e4cddd6c6afaf6e8.stex" ]
 
 [params]
 

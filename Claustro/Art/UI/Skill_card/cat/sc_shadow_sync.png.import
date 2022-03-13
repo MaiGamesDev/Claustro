@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/canned_food.png-9e2afec3cf2a12a1579050a90259684d.stex"
+path="res://.import/sc_shadow_sync.png-cffe4be3ad890e28b1e77afd2d2b240b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/canned_food.png"
-dest_files=[ "res://.import/canned_food.png-9e2afec3cf2a12a1579050a90259684d.stex" ]
+source_file="res://Art/UI/Skill_card/cat/sc_shadow_sync.png"
+dest_files=[ "res://.import/sc_shadow_sync.png-cffe4be3ad890e28b1e77afd2d2b240b.stex" ]
 
 [params]
 

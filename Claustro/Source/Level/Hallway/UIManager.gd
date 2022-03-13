@@ -6,11 +6,33 @@ signal turn_changed
 signal enemy_turn_started
 signal player_attacked
 
-onready var Skill1_space = $BasicCommand/Skill/Container/Space
-onready var Skill2_space = $BasicCommand/Skill/Container2/Space
-onready var Skill3_space = $BasicCommand/Skill/Container3/Space
-onready var Skill4_space = $BasicCommand/Skill/Container4/Space
+export(String, FILE, "*.json") var skill_data_file
 
+onready var Skill1 = $BasicCommand/Skill/Container
+onready var Skill2 = $BasicCommand/Skill/Container2
+onready var Skill3 = $BasicCommand/Skill/Container3
+onready var Skill4 = $BasicCommand/Skill/Container4
+
+onready var Skill1_space = Skill1.get_node("Space")
+onready var Skill2_space = Skill2.get_node("Space")
+onready var Skill3_space = Skill3.get_node("Space")
+onready var Skill4_space = Skill4.get_node("Space")
+
+onready var Skill1_sprite = Skill1.get_node("Skill1/Sprite")
+onready var Skill2_sprite = Skill2.get_node("Skill2/Sprite")
+onready var Skill3_sprite = Skill3.get_node("Skill3/Sprite")
+onready var Skill4_sprite = Skill4.get_node("Skill4/Sprite")
+var skill_sprite_array = [
+	Skill1_sprite,
+	Skill2_sprite,
+	Skill3_sprite,
+	Skill4_sprite
+]
+
+var current_skill = 0
+
+func _ready():
+	update_card_image()
 
 func change_turn(turn : String):
 	current_turn = turn
@@ -51,6 +73,22 @@ func update_current_card(number : int,is_entered : bool):
 		
 	tween.interpolate_property(space, "rect_min_size:y", space.rect_min_size.y, value, 1.0, tween.TRANS_QUINT, tween.EASE_OUT)
 	tween.start()
+	
+func update_card_image():
+	# Read the skill data
+	var file = File.new()
+	if file.file_exists(skill_data_file):
+		file.open(skill_data_file, File.READ)
+		current_skill = file.get_var()
+		file.close()
+	else:
+		current_skill = 0
+		
+	#경로 정의
+	var path = "res://Art/UI/Skill_card/cat/sc_magicball.png"
+	
+	for i in 4:
+		skill_sprite_array[i].texture = load
 	
 func update_hp(player : int, max_value : int, value: int):
 	if player == 0:

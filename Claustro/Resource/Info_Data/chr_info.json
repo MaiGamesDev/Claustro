@@ -1,0 +1,58 @@
+{
+	"cat": {
+		"name" : "cat",
+
+		"basic_stat": {
+			"maxHP" : 3,
+			"DMG" : 40,
+			"SPD" : 2
+			},
+
+		"profile": {
+			"name" : "김애옹",
+			"career" : "고양이 마법사",
+			"skil" : "강력한 폭발마법",
+			"HP" : 3,
+			"DMG" : 2,
+			"SPD" : "보통"
+			}
+	},
+
+	"dog": {
+		"name" : "dog",
+
+		"basic_stat": {
+			"maxHP" : 4,
+			"DMG" : 40,
+			"SPD" : 1
+			},
+
+		"profile": {
+			"name" : "개나리",
+			"career" : "개 칼잡이",
+			"skil" : "균형잡힌 베기",
+			"HP" : 4,
+			"DMG" : 2,
+			"SPD" : "낮음"
+			}
+	},
+
+	"mouse": {
+		"name" : "mouse",
+
+		"basic_stat": {
+			"maxHP" : 3,
+			"DMG" : 30,
+			"SPD" : 3
+			},
+
+		"profile": {
+			"name" : "강쥐",
+			"career" : "쥐 사격수",
+			"skil" : "재빠른 사격",
+			"HP" : 3,
+			"DMG" : 1,
+			"SPD" : "보통"
+			}
+	}
+}
