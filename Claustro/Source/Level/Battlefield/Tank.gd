@@ -1,5 +1,8 @@
 extends VehicleBody
 
+var shootPtc = preload("res://Source/Effect/ShootEffect.tscn")
+var bullet = preload("res://Source/Object/Tank_bullet.tscn")
+
 var horse_power = 90
 var accel_speed = 20
 
@@ -9,8 +12,6 @@ var steer_speed = 1
 var brake_power = 40
 var brake_speed = 40
 
-func _ready():
-	$Turret/gun/FirePoint/ShootEffect.show()
 
 func _physics_process(delta):
 	
@@ -31,9 +32,10 @@ func _process(delta):
 		shoot()
 
 func shoot():
-	$AnimationPlayer.play("shoot")
+	var particle = shootPtc.instance()
+	$Turret/gun/FirePoint.add_child(particle)
 	
-	var bullet = load("res://Source/Object/Tank_bullet.tscn").instance()
-	bullet.velocity = Basis().x.rotated(Basis().x, $Turret.rotation_degrees.y)
-	bullet.translation = $Turret/gun/FirePoint.translation
+	var projectile = bullet.instance()
+	projectile.velocity = Basis().x.rotated(Basis().x, $Turret.rotation_degrees.y)
+	projectile.translation = $Turret/gun/FirePoint.translation
 	add_child(bullet)

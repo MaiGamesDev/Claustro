@@ -1,8 +1,7 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Source/Level/Battlefield/Camera.gd" type="Script" id=1]
 [ext_resource path="res://Source/Level/Battlefield/Tank.gd" type="Script" id=2]
-[ext_resource path="res://Source/Effect/ShootEffect.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Mesh/Pershing_tank/barrel.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://Mesh/Pershing_tank/hull.obj" type="ArrayMesh" id=5]
 [ext_resource path="res://Mesh/Pershing_tank/upside.obj" type="ArrayMesh" id=6]
@@ -17,36 +16,6 @@ albedo_color = Color( 0.294118, 0.32549, 0.12549, 1 )
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.294118, 0.32549, 0.12549, 1 )
 
-[sub_resource type="Gradient" id=11]
-offsets = PoolRealArray( 0.320755, 0.433962 )
-colors = PoolColorArray( 1, 0, 0, 1, 0, 0, 0, 1 )
-
-[sub_resource type="GradientTexture" id=6]
-gradient = SubResource( 11 )
-
-[sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 0.344318 ), 0.0, 0.0, 0, 0, Vector2( 0.155039, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.317829, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.534884, 0.232955 ), 0.0, 0.0, 0, 0, Vector2( 0.806201, 0.238636 ), 0.0, 0.0, 0, 0, Vector2( 0.993808, 0 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=2]
-curve = SubResource( 1 )
-
-[sub_resource type="ParticlesMaterial" id=7]
-direction = Vector3( 0, 1, 0 )
-spread = 30.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 2.0
-initial_velocity_random = 0.2
-scale_curve = SubResource( 2 )
-color_ramp = SubResource( 6 )
-
-[sub_resource type="SpatialMaterial" id=8]
-vertex_color_use_as_albedo = true
-
-[sub_resource type="SphereMesh" id=12]
-material = SubResource( 8 )
-radius = 0.2
-height = 0.4
-
 [sub_resource type="ConvexPolygonShape" id=13]
 points = PoolVector3Array( 0.906176, 0.39241, 1.56869, 0.61896, 0.645598, 1.58117, 0.557579, 0.658822, 1.59614, 0.906176, 0.373575, 1.56869, 0.906176, 0.473921, 1.54062, 0.608138, 0.652811, 1.58117, 0.906176, 0.546054, 1.5032, 0.365273, 0.677657, 1.59614, 0, 0.71172, 1.59645, 0, 0.58204, 1.59645, 0.554208, 0.58204, 1.59614, 0.595365, 0.655376, 1.58117, 0.906176, 0.684389, 1.24526, 0.713161, 0.742577, 1.03099, -0.906176, 0.373575, 1.56869, 0.886662, 0.214882, 1.51754, 0.886662, -0.000154704, 1.09181, 0.886662, -0.000315, -1.10422, 0.906176, 0.473841, -1.48785, 0.906176, 0.632934, 1.41524, -0.365451, 0.677657, 1.59614, -0.557756, 0.658822, 1.59614, 0, 0.795474, 1.03099, -0.713339, 0.742577, 1.03099, -0.554385, 0.58204, 1.59614, 0.906176, 0.70643, 1.07559, 0.713161, 0.754599, 0.889704, -0.886839, -0.000154704, 1.09181, -0.886839, 0.214882, 1.51754, -0.906176, 0.39241, 1.56869, -0.906176, 0.473841, -1.48785, -0.886839, -0.000315, -1.10422, 0.886662, 0.042484, -1.19997, 0.906176, 0.499247, -1.58984, -0.595543, 0.655376, 1.58117, -0.608316, 0.652811, 1.58117, -0.619137, 0.645598, 1.58117, -0.906176, 0.684389, 1.24526, 0, 0.807416, 0.889704, -0.713339, 0.754599, 0.889704, -0.906176, 0.70643, 1.07559, 0.906176, 0.714445, 0.784285, 0.713161, 0.754599, -0.853461, 0, 0.818477, -0.853461, -0.906176, 0.473921, 1.54062, -0.906176, 0.499247, -1.58984, -0.886839, 0.042484, -1.19997, 0.886662, 0.345524, -1.5075, 0.906176, 0.51135, -1.58984, -0.906176, 0.632934, 1.41524, -0.906176, 0.546054, 1.5032, -0.906176, 0.714445, 0.784285, -0.713339, 0.754599, -0.853461, 0.906176, 0.714445, -0.748041, 0.906176, 0.713162, -1.36153, 0.36616, 0.784334, -1.16411, 0, 0.818477, -1.16411, -0.906176, 0.51135, -1.58984, -0.886839, 0.345524, -1.5075, 0.906176, 0.622275, -1.5365, -0.906176, 0.714445, -0.748041, -0.366338, 0.784334, -1.16411, -0.906176, 0.713162, -1.36153, 0.906176, 0.694408, -1.43888, -0.531855, 0.747947, -1.43108, -0.531855, 0.74955, -1.42547, -0.531855, 0.750111, -1.41986, -0.906176, 0.622275, -1.5365, 0.906176, 0.663711, -1.48785, -0.531855, 0.742016, -1.44075, -0.906176, 0.694408, -1.43888, -0.531855, 0.745382, -1.43639, -0.906176, 0.663711, -1.48785 )
 
@@ -54,39 +23,19 @@ points = PoolVector3Array( 0.906176, 0.39241, 1.56869, 0.61896, 0.645598, 1.5811
 params_cull_mode = 2
 albedo_color = Color( 0.294118, 0.32549, 0.12549, 1 )
 
+[sub_resource type="BoxShape" id=15]
+extents = Vector3( 0.001, 0.001, 0.001 )
+
 [sub_resource type="Animation" id=9]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Turret/gun/FirePoint/ShootEffect:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=10]
 resource_name = "shoot"
 length = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath("Turret/gun/FirePoint/ShootEffect:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ true, false ]
-}
 
 [node name="Pershing" type="VehicleBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16666, 0 )
+collision_layer = 16
 mass = 51.0204
 script = ExtResource( 2 )
 
@@ -115,13 +64,6 @@ material/2 = null
 
 [node name="FirePoint" type="Position3D" parent="Turret/gun"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0686367, -1.91368 )
-
-[node name="ShootEffect" parent="Turret/gun/FirePoint" instance=ExtResource( 3 )]
-transform = Transform( -1, -1.50996e-07, 6.60024e-15, 0, -4.37114e-08, -1, 1.50996e-07, -1, 4.37114e-08, 0, 0, 0 )
-visible = false
-emitting = false
-process_material = SubResource( 7 )
-draw_pass_1 = SubResource( 12 )
 
 [node name="Hull" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000879407, 0.04, 0 )
@@ -192,12 +134,13 @@ use_as_traction = true
 wheel_radius = 0.25
 
 [node name="SpringArm" type="SpringArm" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 0 )
-collision_mask = 0
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+shape = SubResource( 15 )
 spring_length = 5.0
 script = ExtResource( 1 )
 
 [node name="Camera" type="ClippedCamera" parent="SpringArm"]
+clip_to_areas = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 9 )

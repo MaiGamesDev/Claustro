@@ -9,5 +9,5 @@ func _ready():
 	
 
 func _on_Hitbox_body_entered(body):
-	print("asdf")
+	print("bullet colided")
 	queue_free()
