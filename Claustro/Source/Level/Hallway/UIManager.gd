@@ -83,15 +83,29 @@ func update_card_image():
 	load_party_data()
 	
 	var current_chr
+	var skill_array = ["","","",""]
 	if current_turn == "P1":
 		current_chr = current_party.player1
+		skill_array = [
+			current_skill.player1_skill_1,
+			current_skill.player1_skill_2,
+			current_skill.player1_skill_3,
+			current_skill.player1_skill_4
+		]
 	elif current_turn == "P2":
 		current_chr = current_party.player2
-	print(current_chr)
-	#경로 정의
-	var path = "res://Art/UI/Skill_card/cat/sc_magicball.png"
+		skill_array = [
+			current_skill.player2_skill_1,
+			current_skill.player2_skill_2,
+			current_skill.player2_skill_3,
+			current_skill.player2_skill_4
+		]
+	else:
+		return
 	
-	
+	for i in 4:
+		var texture = "res://Art/UI/Skill_card/"+ current_chr + "/sc_" + skill_array[i] +".png"
+		print(skill_sprite_array[i])
 func update_hp(player : int, max_value : int, value: int):
 	if player == 0:
 		var text = str(value) + "/" + str(max_value)

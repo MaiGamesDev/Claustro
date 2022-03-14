@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=2]
+[gd_scene load_steps=109 format=2]
 
 [ext_resource path="res://Art/UI/tp_bg.png" type="Texture" id=1]
 [ext_resource path="res://Art/UI/icon_cat.png" type="Texture" id=2]
@@ -24,6 +24,9 @@
 [ext_resource path="res://game_env.tres" type="Environment" id=22]
 [ext_resource path="res://Source/Level/Hallway/EventCollision.gd" type="Script" id=23]
 [ext_resource path="res://Art/UI/Skill_card/cat/sc_heal.png" type="Texture" id=24]
+[ext_resource path="res://Art/UI/range_type_icon.png" type="Texture" id=25]
+[ext_resource path="res://Art/UI/magic_type_icon.png" type="Texture" id=26]
+[ext_resource path="res://Art/UI/melee_type_icon.png" type="Texture" id=27]
 
 [sub_resource type="AnimationNodeAnimation" id=14]
 animation = "enemy_side"
@@ -1412,9 +1415,6 @@ margin_top = 6.0
 margin_right = 17.0
 margin_bottom = 20.0
 color = Color( 0.945098, 0.8, 0.223529, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Point2" type="ColorRect" parent="UILayer/UI/State/VBoxContainer/Progress"]
 margin_left = 57.0
@@ -1442,9 +1442,6 @@ margin_top = 6.0
 margin_right = 151.0
 margin_bottom = 20.0
 color = Color( 0.945098, 0.8, 0.223529, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Point5" type="ColorRect" parent="UILayer/UI/State/VBoxContainer/Progress"]
 margin_left = 187.0
@@ -1488,6 +1485,18 @@ margin_bottom = 14.0
 text = "10/10"
 
 [node name="DevCam" parent="." instance=ExtResource( 11 )]
+
+[node name="MagicTypeIcon" type="Sprite" parent="."]
+position = Vector2( 21, 306 )
+texture = ExtResource( 26 )
+
+[node name="MeleeTypeIcon" type="Sprite" parent="."]
+position = Vector2( 32, 306 )
+texture = ExtResource( 27 )
+
+[node name="RangeTypeIcon" type="Sprite" parent="."]
+position = Vector2( 43, 305 )
+texture = ExtResource( 25 )
 
 [connection signal="player1_hp_updated" from="Player" to="UILayer/UI" method="_on_player1_hp_updated"]
 [connection signal="player2_hp_updated" from="Player" to="UILayer/UI" method="_on_player2_hp_updated"]
