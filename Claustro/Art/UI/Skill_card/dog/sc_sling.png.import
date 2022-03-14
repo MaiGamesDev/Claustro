@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sc_attack - 복사본 (3).png-5a5840384bd0ed9964faa80d18826bf0.stex"
+path="res://.import/sc_sling.png-18e951f28252c6a8f2c73cdf3ced872a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/UI/Skill_card/cat/sc_attack - 복사본 (3).png"
-dest_files=[ "res://.import/sc_attack - 복사본 (3).png-5a5840384bd0ed9964faa80d18826bf0.stex" ]
+source_file="res://Art/UI/Skill_card/dog/sc_sling.png"
+dest_files=[ "res://.import/sc_sling.png-18e951f28252c6a8f2c73cdf3ced872a.stex" ]
 
 [params]
 
@@ -24,7 +24,7 @@ flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
