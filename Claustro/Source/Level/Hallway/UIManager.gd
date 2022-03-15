@@ -7,6 +7,7 @@ signal enemy_turn_started
 signal player_attacked
 
 export(String, FILE, "*.json") var skill_data_file
+export(String, FILE, "*.json") var party_data_file
 
 onready var Skill1 = $BasicCommand/Skill/Container
 onready var Skill2 = $BasicCommand/Skill/Container2
@@ -30,6 +31,7 @@ var skill_sprite_array = [
 ]
 
 var current_skill = 0
+var current_party = 0
 
 func _ready():
 	update_card_image()
@@ -50,10 +52,12 @@ func next_turn():
 	match current_turn:
 		"P1":
 			change_turn("P2")
+			update_card_image()
 		"P2":
 			change_turn("E1")
 		"E1":
 			change_turn("P1")
+			update_card_image()
 
 func update_current_card(number : int,is_entered : bool):
 	var spaces = [
@@ -75,21 +79,33 @@ func update_current_card(number : int,is_entered : bool):
 	tween.start()
 	
 func update_card_image():
-	# Read the skill data
-	var file = File.new()
-	if file.file_exists(skill_data_file):
-		file.open(skill_data_file, File.READ)
-		current_skill = file.get_var()
-		file.close()
+	load_skill_data()
+	load_party_data()
+	
+	var current_chr
+	var skill_array = ["","","",""]
+	if current_turn == "P1":
+		current_chr = current_party.player1
+		skill_array = [
+			current_skill.player1_skill_1,
+			current_skill.player1_skill_2,
+			current_skill.player1_skill_3,
+			current_skill.player1_skill_4
+		]
+	elif current_turn == "P2":
+		current_chr = current_party.player2
+		skill_array = [
+			current_skill.player2_skill_1,
+			current_skill.player2_skill_2,
+			current_skill.player2_skill_3,
+			current_skill.player2_skill_4
+		]
 	else:
-		current_skill = 0
-		
-	#경로 정의
-	var path = "res://Art/UI/Skill_card/cat/sc_magicball.png"
+		return
 	
 	for i in 4:
-		skill_sprite_array[i].texture = load
-	
+		var texture = "res://Art/UI/Skill_card/"+ current_chr + "/sc_" + skill_array[i] +".png"
+		print(skill_sprite_array[i])
 func update_hp(player : int, max_value : int, value: int):
 	if player == 0:
 		var text = str(value) + "/" + str(max_value)
@@ -98,6 +114,38 @@ func update_hp(player : int, max_value : int, value: int):
 		var text = str(value) + "/" + str(max_value)
 		$State/VBoxContainer/HBoxContainer/PlayerHp2.text = text
 		
+func load_skill_data():
+	# skill data 불러오기
+	var file = File.new()
+	if not file.file_exists(skill_data_file):
+		print("ERROR : can't find skill_data_file")
+		return
+	file.open(skill_data_file, File.READ)
+	current_skill = parse_json(file.get_as_text())
+	file.close()
+	
+func load_party_data():
+	# party data 불러오기
+	var file = File.new()
+	if not file.file_exists(party_data_file):
+		print("ERROR : can't find party_data_file")
+		return
+	file.open(party_data_file, File.READ)
+	current_party = parse_json(file.get_as_text())
+	file.close()
+	
+	
+		
+func _on_Enemy_turn_finished():
+	next_turn()
+
+
+func _on_player1_hp_updated(max_hp : int, hp : int):
+	update_hp(0,max_hp,hp)
+
+func _on_player2_hp_updated(max_hp : int, hp : int):
+	update_hp(1,max_hp,hp)
+
 
 func _on_Skill1_mouse_entered():
 	update_current_card(0,true)
@@ -126,14 +174,4 @@ func _on_Skill3_pressed():
 	next_turn()
 func _on_Skill4_pressed():
 	next_turn()
-
-func _on_Enemy_turn_finished():
-	next_turn()
-
-
-func _on_player1_hp_updated(max_hp : int, hp : int):
-	update_hp(0,max_hp,hp)
-
-func _on_player2_hp_updated(max_hp : int, hp : int):
-	update_hp(1,max_hp,hp)
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sc_attack - 복사본 (3).png-5a5840384bd0ed9964faa80d18826bf0.stex"
+path="res://.import/range_type_icon.png-582e293fad7b6898cb34d0041ff52b3a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/UI/Skill_card/cat/sc_attack - 복사본 (3).png"
-dest_files=[ "res://.import/sc_attack - 복사본 (3).png-5a5840384bd0ed9964faa80d18826bf0.stex" ]
+source_file="res://Art/UI/range_type_icon.png"
+dest_files=[ "res://.import/range_type_icon.png-582e293fad7b6898cb34d0041ff52b3a.stex" ]
 
 [params]
 
@@ -24,7 +24,7 @@ flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false

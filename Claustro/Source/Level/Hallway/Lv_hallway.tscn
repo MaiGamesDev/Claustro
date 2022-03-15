@@ -1,9 +1,9 @@
-[gd_scene load_steps=106 format=2]
+[gd_scene load_steps=109 format=2]
 
 [ext_resource path="res://Art/UI/tp_bg.png" type="Texture" id=1]
 [ext_resource path="res://Art/UI/icon_cat.png" type="Texture" id=2]
 [ext_resource path="res://Art/Actor/cat_battle.png" type="Texture" id=3]
-[ext_resource path="res://Art/UI/Skill_card/cat/sc_attack.png" type="Texture" id=4]
+[ext_resource path="res://Art/UI/Skill_card/cat/sc_magicball.png" type="Texture" id=4]
 [ext_resource path="res://Art/UI/Skill_card/dog/sc_defence.png" type="Texture" id=5]
 [ext_resource path="res://Art/Actor/dog_battle.png" type="Texture" id=6]
 [ext_resource path="res://Art/UI/tp.png" type="Texture" id=7]
@@ -24,6 +24,9 @@
 [ext_resource path="res://game_env.tres" type="Environment" id=22]
 [ext_resource path="res://Source/Level/Hallway/EventCollision.gd" type="Script" id=23]
 [ext_resource path="res://Art/UI/Skill_card/cat/sc_heal.png" type="Texture" id=24]
+[ext_resource path="res://Art/UI/range_type_icon.png" type="Texture" id=25]
+[ext_resource path="res://Art/UI/magic_type_icon.png" type="Texture" id=26]
+[ext_resource path="res://Art/UI/melee_type_icon.png" type="Texture" id=27]
 
 [sub_resource type="AnimationNodeAnimation" id=14]
 animation = "enemy_side"
@@ -103,7 +106,7 @@ tracks/1/keys = {
 } ]
 }
 tracks/2/type = "animation"
-tracks/2/path = NodePath("UI/UI/UIAnimation")
+tracks/2/path = NodePath("UILayer/UI/UIAnimation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -144,7 +147,7 @@ tracks/1/keys = {
 } ]
 }
 tracks/2/type = "animation"
-tracks/2/path = NodePath("UI/UI/UIAnimation")
+tracks/2/path = NodePath("UILayer/UI/UIAnimation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -185,7 +188,7 @@ tracks/1/keys = {
 } ]
 }
 tracks/2/type = "animation"
-tracks/2/path = NodePath("UI/UI/UIAnimation")
+tracks/2/path = NodePath("UILayer/UI/UIAnimation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -295,6 +298,16 @@ flags = 16
 atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 50, 40 )
 
+[sub_resource type="AtlasTexture" id=40]
+flags = 16
+atlas = ExtResource( 8 )
+region = Rect2( 50, 0, 50, 40 )
+
+[sub_resource type="AtlasTexture" id=41]
+flags = 16
+atlas = ExtResource( 8 )
+region = Rect2( 100, 0, 50, 40 )
+
 [sub_resource type="AtlasTexture" id=37]
 flags = 16
 atlas = ExtResource( 8 )
@@ -315,21 +328,16 @@ flags = 16
 atlas = ExtResource( 8 )
 region = Rect2( 150, 0, 50, 40 )
 
-[sub_resource type="AtlasTexture" id=40]
-flags = 16
-atlas = ExtResource( 8 )
-region = Rect2( 50, 0, 50, 40 )
-
-[sub_resource type="AtlasTexture" id=41]
-flags = 16
-atlas = ExtResource( 8 )
-region = Rect2( 100, 0, 50, 40 )
-
 [sub_resource type="SpriteFrames" id=43]
 animations = [ {
 "frames": [ SubResource( 36 ) ],
 "loop": false,
 "name": "idle",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 40 ), SubResource( 40 ), SubResource( 41 ), SubResource( 40 ) ],
+"loop": false,
+"name": "attack",
 "speed": 3.0
 }, {
 "frames": [ SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
@@ -340,11 +348,6 @@ animations = [ {
 "frames": [ SubResource( 42 ) ],
 "loop": false,
 "name": "hurt",
-"speed": 3.0
-}, {
-"frames": [ SubResource( 40 ), SubResource( 40 ), SubResource( 41 ), SubResource( 40 ) ],
-"loop": false,
-"name": "attack",
 "speed": 3.0
 } ]
 
@@ -709,7 +712,7 @@ extents = Vector2( 50, 30 )
 resource_name = "E1"
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("UI/UI/BasicCommand:visible")
+tracks/0/path = NodePath("UILayer/UI/BasicCommand:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -721,7 +724,7 @@ tracks/0/keys = {
 "values": [ false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("UI/UI/DefenceCommand:visible")
+tracks/1/path = NodePath("UILayer/UI/DefenceCommand:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -737,7 +740,7 @@ tracks/1/keys = {
 resource_name = "P1"
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("UI/UI/BasicCommand:visible")
+tracks/0/path = NodePath("UILayer/UI/BasicCommand:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -749,7 +752,7 @@ tracks/0/keys = {
 "values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("UI/UI/DefenceCommand:visible")
+tracks/1/path = NodePath("UILayer/UI/DefenceCommand:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -765,7 +768,7 @@ tracks/1/keys = {
 resource_name = "P2"
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("UI/UI/BasicCommand:visible")
+tracks/0/path = NodePath("UILayer/UI/BasicCommand:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -777,7 +780,7 @@ tracks/0/keys = {
 "values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("UI/UI/DefenceCommand:visible")
+tracks/1/path = NodePath("UILayer/UI/DefenceCommand:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -792,7 +795,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=58]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("UI/UI/BasicCommand:visible")
+tracks/0/path = NodePath("UILayer/UI/BasicCommand:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -804,7 +807,7 @@ tracks/0/keys = {
 "values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("UI/UI/DefenceCommand:visible")
+tracks/1/path = NodePath("UILayer/UI/DefenceCommand:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -1161,28 +1164,29 @@ material/0 = null
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
 environment = ExtResource( 22 )
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UILayer" type="CanvasLayer" parent="."]
 
-[node name="UI" type="Control" parent="UI"]
+[node name="UI" type="Control" parent="UILayer"]
 margin_right = 202.0
 margin_bottom = 360.0
 script = ExtResource( 13 )
 skill_data_file = "res://Resource/Battle_Data/current_skill.json"
+party_data_file = "res://Resource/Battle_Data/current_party.json"
 
-[node name="BasicCommand" type="Control" parent="UI/UI"]
+[node name="BasicCommand" type="Control" parent="UILayer/UI"]
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cancel" type="Button" parent="UI/UI/BasicCommand"]
+[node name="Cancel" type="Button" parent="UILayer/UI/BasicCommand"]
 modulate = Color( 1, 1, 1, 0 )
 margin_right = 202.0
 margin_bottom = 360.0
 flat = true
 
-[node name="Skill" type="HBoxContainer" parent="UI/UI/BasicCommand"]
+[node name="Skill" type="HBoxContainer" parent="UILayer/UI/BasicCommand"]
 margin_top = 283.0
 margin_right = 202.0
 margin_bottom = 387.0
@@ -1192,29 +1196,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Container" type="VBoxContainer" parent="UI/UI/BasicCommand/Skill"]
+[node name="Container" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill"]
 margin_left = 11.0
 margin_right = 53.0
 margin_bottom = 104.0
 
-[node name="Space" type="Control" parent="UI/UI/BasicCommand/Skill/Container"]
+[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill/Container"]
 margin_right = 42.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 
-[node name="Skill1" type="Button" parent="UI/UI/BasicCommand/Skill/Container"]
+[node name="Skill1" type="Button" parent="UILayer/UI/BasicCommand/Skill/Container"]
 margin_top = 34.0
 margin_right = 42.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 42, 70 )
 flat = true
 
-[node name="Sprite" type="Sprite" parent="UI/UI/BasicCommand/Skill/Container/Skill1"]
+[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill/Container/Skill1"]
 show_behind_parent = true
 texture = ExtResource( 4 )
 centered = false
 
-[node name="Label" type="Label" parent="UI/UI/BasicCommand/Skill/Container/Skill1"]
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill/Container/Skill1"]
 show_behind_parent = true
 margin_top = 5.0
 margin_right = 42.0
@@ -1225,31 +1229,31 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="UI/UI/BasicCommand/Skill/Container"]
+[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill/Container"]
 
-[node name="Container2" type="VBoxContainer" parent="UI/UI/BasicCommand/Skill"]
+[node name="Container2" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill"]
 margin_left = 57.0
 margin_right = 99.0
 margin_bottom = 104.0
 
-[node name="Space" type="Control" parent="UI/UI/BasicCommand/Skill/Container2"]
+[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill/Container2"]
 margin_right = 42.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 
-[node name="Skill2" type="Button" parent="UI/UI/BasicCommand/Skill/Container2"]
+[node name="Skill2" type="Button" parent="UILayer/UI/BasicCommand/Skill/Container2"]
 margin_top = 34.0
 margin_right = 42.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 42, 70 )
 flat = true
 
-[node name="Sprite" type="Sprite" parent="UI/UI/BasicCommand/Skill/Container2/Skill2"]
+[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill/Container2/Skill2"]
 show_behind_parent = true
 texture = ExtResource( 24 )
 centered = false
 
-[node name="Label" type="Label" parent="UI/UI/BasicCommand/Skill/Container2/Skill2"]
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill/Container2/Skill2"]
 show_behind_parent = true
 margin_top = 5.0
 margin_right = 42.0
@@ -1260,31 +1264,31 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="UI/UI/BasicCommand/Skill/Container2"]
+[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill/Container2"]
 
-[node name="Container3" type="VBoxContainer" parent="UI/UI/BasicCommand/Skill"]
+[node name="Container3" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill"]
 margin_left = 103.0
 margin_right = 145.0
 margin_bottom = 104.0
 
-[node name="Space" type="Control" parent="UI/UI/BasicCommand/Skill/Container3"]
+[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill/Container3"]
 margin_right = 42.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 
-[node name="Skill3" type="Button" parent="UI/UI/BasicCommand/Skill/Container3"]
+[node name="Skill3" type="Button" parent="UILayer/UI/BasicCommand/Skill/Container3"]
 margin_top = 34.0
 margin_right = 42.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 42, 70 )
 flat = true
 
-[node name="Sprite" type="Sprite" parent="UI/UI/BasicCommand/Skill/Container3/Skill3"]
+[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill/Container3/Skill3"]
 show_behind_parent = true
 texture = ExtResource( 4 )
 centered = false
 
-[node name="Label" type="Label" parent="UI/UI/BasicCommand/Skill/Container3/Skill3"]
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill/Container3/Skill3"]
 show_behind_parent = true
 margin_top = 5.0
 margin_right = 42.0
@@ -1295,31 +1299,31 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="UI/UI/BasicCommand/Skill/Container3"]
+[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill/Container3"]
 
-[node name="Container4" type="VBoxContainer" parent="UI/UI/BasicCommand/Skill"]
+[node name="Container4" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill"]
 margin_left = 149.0
 margin_right = 191.0
 margin_bottom = 104.0
 
-[node name="Space" type="Control" parent="UI/UI/BasicCommand/Skill/Container4"]
+[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill/Container4"]
 margin_right = 42.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 
-[node name="Skill4" type="Button" parent="UI/UI/BasicCommand/Skill/Container4"]
+[node name="Skill4" type="Button" parent="UILayer/UI/BasicCommand/Skill/Container4"]
 margin_top = 34.0
 margin_right = 42.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 42, 70 )
 flat = true
 
-[node name="Sprite" type="Sprite" parent="UI/UI/BasicCommand/Skill/Container4/Skill4"]
+[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill/Container4/Skill4"]
 show_behind_parent = true
 texture = ExtResource( 5 )
 centered = false
 
-[node name="Label" type="Label" parent="UI/UI/BasicCommand/Skill/Container4/Skill4"]
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill/Container4/Skill4"]
 show_behind_parent = true
 margin_top = 5.0
 margin_right = 42.0
@@ -1330,24 +1334,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="UI/UI/BasicCommand/Skill/Container4"]
+[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill/Container4"]
 
-[node name="DefenceCommand" type="Control" parent="UI/UI"]
+[node name="DefenceCommand" type="Control" parent="UILayer/UI"]
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Defence1" type="TouchScreenButton" parent="UI/UI/DefenceCommand"]
+[node name="Defence1" type="TouchScreenButton" parent="UILayer/UI/DefenceCommand"]
 position = Vector2( 0, 299 )
 shape = SubResource( 23 )
 
-[node name="Defence2" type="TouchScreenButton" parent="UI/UI/DefenceCommand"]
+[node name="Defence2" type="TouchScreenButton" parent="UILayer/UI/DefenceCommand"]
 position = Vector2( 102, 299 )
 shape = SubResource( 23 )
 
-[node name="UIAnimation" type="AnimationPlayer" parent="UI/UI"]
+[node name="UIAnimation" type="AnimationPlayer" parent="UILayer/UI"]
 root_node = NodePath("../../..")
 autoplay = "P1"
 anims/E1 = SubResource( 56 )
@@ -1355,14 +1359,14 @@ anims/P1 = SubResource( 27 )
 anims/P2 = SubResource( 57 )
 anims/RESET = SubResource( 58 )
 
-[node name="State" type="Control" parent="UI/UI"]
+[node name="State" type="Control" parent="UILayer/UI"]
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BG" type="ColorRect" parent="UI/UI/State"]
+[node name="BG" type="ColorRect" parent="UILayer/UI/State"]
 margin_right = 202.0
 margin_bottom = 40.0
 color = Color( 0.356863, 0.470588, 0.576471, 1 )
@@ -1370,7 +1374,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="APBar" type="TextureProgress" parent="UI/UI/State"]
+[node name="APBar" type="TextureProgress" parent="UILayer/UI/State"]
 margin_left = 11.0
 margin_top = 40.0
 margin_right = 187.0
@@ -1382,20 +1386,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/State"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/UI/State"]
 margin_right = 202.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Progress" type="Control" parent="UI/UI/State/VBoxContainer"]
+[node name="Progress" type="Control" parent="UILayer/UI/State/VBoxContainer"]
 margin_right = 202.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Bar" type="ColorRect" parent="UI/UI/State/VBoxContainer/Progress"]
+[node name="Bar" type="ColorRect" parent="UILayer/UI/State/VBoxContainer/Progress"]
 margin_left = 5.0
 margin_top = 11.0
 margin_right = 197.0
@@ -1405,17 +1409,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Point1" type="ColorRect" parent="UI/UI/State/VBoxContainer/Progress"]
+[node name="Point1" type="ColorRect" parent="UILayer/UI/State/VBoxContainer/Progress"]
 margin_left = 11.0
 margin_top = 6.0
 margin_right = 17.0
 margin_bottom = 20.0
 color = Color( 0.945098, 0.8, 0.223529, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Point2" type="ColorRect" parent="UI/UI/State/VBoxContainer/Progress"]
+[node name="Point2" type="ColorRect" parent="UILayer/UI/State/VBoxContainer/Progress"]
 margin_left = 57.0
 margin_top = 6.0
 margin_right = 63.0
@@ -1425,7 +1426,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Point3" type="ColorRect" parent="UI/UI/State/VBoxContainer/Progress"]
+[node name="Point3" type="ColorRect" parent="UILayer/UI/State/VBoxContainer/Progress"]
 margin_left = 103.0
 margin_top = 6.0
 margin_right = 109.0
@@ -1435,17 +1436,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Point4" type="ColorRect" parent="UI/UI/State/VBoxContainer/Progress"]
+[node name="Point4" type="ColorRect" parent="UILayer/UI/State/VBoxContainer/Progress"]
 margin_left = 145.0
 margin_top = 6.0
 margin_right = 151.0
 margin_bottom = 20.0
 color = Color( 0.945098, 0.8, 0.223529, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Point5" type="ColorRect" parent="UI/UI/State/VBoxContainer/Progress"]
+[node name="Point5" type="ColorRect" parent="UILayer/UI/State/VBoxContainer/Progress"]
 margin_left = 187.0
 margin_top = 6.0
 margin_right = 193.0
@@ -1455,11 +1453,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CurrentPoint" type="Sprite" parent="UI/UI/State/VBoxContainer/Progress"]
+[node name="CurrentPoint" type="Sprite" parent="UILayer/UI/State/VBoxContainer/Progress"]
 position = Vector2( 40, 14 )
 texture = ExtResource( 2 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/UI/State/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/State/VBoxContainer"]
 margin_top = 26.0
 margin_right = 202.0
 margin_bottom = 40.0
@@ -1468,19 +1466,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlayerHp1" type="Label" parent="UI/UI/State/VBoxContainer/HBoxContainer"]
+[node name="PlayerHp1" type="Label" parent="UILayer/UI/State/VBoxContainer/HBoxContainer"]
 margin_left = 40.0
 margin_right = 77.0
 margin_bottom = 14.0
 text = "10/10"
 
-[node name="Control" type="Control" parent="UI/UI/State/VBoxContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="UILayer/UI/State/VBoxContainer/HBoxContainer"]
 margin_left = 81.0
 margin_right = 121.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 40, 0 )
 
-[node name="PlayerHp2" type="Label" parent="UI/UI/State/VBoxContainer/HBoxContainer"]
+[node name="PlayerHp2" type="Label" parent="UILayer/UI/State/VBoxContainer/HBoxContainer"]
 margin_left = 125.0
 margin_right = 162.0
 margin_bottom = 14.0
@@ -1488,26 +1486,38 @@ text = "10/10"
 
 [node name="DevCam" parent="." instance=ExtResource( 11 )]
 
-[connection signal="player1_hp_updated" from="Player" to="UI/UI" method="_on_player1_hp_updated"]
-[connection signal="player2_hp_updated" from="Player" to="UI/UI" method="_on_player2_hp_updated"]
-[connection signal="player_hurted" from="Player" to="UI/UI" method="_on_player_hurted"]
+[node name="MagicTypeIcon" type="Sprite" parent="."]
+position = Vector2( 21, 306 )
+texture = ExtResource( 26 )
+
+[node name="MeleeTypeIcon" type="Sprite" parent="."]
+position = Vector2( 32, 306 )
+texture = ExtResource( 27 )
+
+[node name="RangeTypeIcon" type="Sprite" parent="."]
+position = Vector2( 43, 305 )
+texture = ExtResource( 25 )
+
+[connection signal="player1_hp_updated" from="Player" to="UILayer/UI" method="_on_player1_hp_updated"]
+[connection signal="player2_hp_updated" from="Player" to="UILayer/UI" method="_on_player2_hp_updated"]
+[connection signal="player_hurted" from="Player" to="UILayer/UI" method="_on_player_hurted"]
 [connection signal="body_entered" from="Player/Player1/HurtBox" to="Player" method="_on_Player1_hurted"]
 [connection signal="body_entered" from="Player/Player2/HurtBox" to="Player" method="_on_Player2_hurted"]
 [connection signal="area_entered" from="Player/PlayerCollision" to="Player" method="_on_PlayerCollision_area_entered"]
 [connection signal="enemy_died" from="Event/Event1/Enemy" to="Player" method="_on_Enemy_died"]
-[connection signal="turn_finished" from="Event/Event1/Enemy" to="UI/UI" method="_on_Enemy_turn_finished"]
-[connection signal="enemy_turn_started" from="UI/UI" to="Event/Event1/Enemy" method="_on_enemy_turn_started"]
-[connection signal="player_attacked" from="UI/UI" to="Event/Event1/Enemy" method="_on_player_attacked"]
-[connection signal="turn_changed" from="UI/UI" to="Player/Camera" method="_on_UI_turn_changed"]
-[connection signal="mouse_entered" from="UI/UI/BasicCommand/Skill/Container/Skill1" to="UI/UI" method="_on_Skill1_mouse_entered"]
-[connection signal="mouse_exited" from="UI/UI/BasicCommand/Skill/Container/Skill1" to="UI/UI" method="_on_Skill1_mouse_exited"]
-[connection signal="pressed" from="UI/UI/BasicCommand/Skill/Container/Skill1" to="UI/UI" method="_on_Skill1_pressed"]
-[connection signal="mouse_entered" from="UI/UI/BasicCommand/Skill/Container2/Skill2" to="UI/UI" method="_on_Skill2_mouse_entered"]
-[connection signal="mouse_exited" from="UI/UI/BasicCommand/Skill/Container2/Skill2" to="UI/UI" method="_on_Skill2_mouse_exited"]
-[connection signal="pressed" from="UI/UI/BasicCommand/Skill/Container2/Skill2" to="UI/UI" method="_on_Skill2_pressed"]
-[connection signal="mouse_entered" from="UI/UI/BasicCommand/Skill/Container3/Skill3" to="UI/UI" method="_on_Skill3_mouse_entered"]
-[connection signal="mouse_exited" from="UI/UI/BasicCommand/Skill/Container3/Skill3" to="UI/UI" method="_on_Skill3_mouse_exited"]
-[connection signal="pressed" from="UI/UI/BasicCommand/Skill/Container3/Skill3" to="UI/UI" method="_on_Skill3_pressed"]
-[connection signal="mouse_entered" from="UI/UI/BasicCommand/Skill/Container4/Skill4" to="UI/UI" method="_on_Skill4_mouse_entered"]
-[connection signal="mouse_exited" from="UI/UI/BasicCommand/Skill/Container4/Skill4" to="UI/UI" method="_on_Skill4_mouse_exited"]
-[connection signal="pressed" from="UI/UI/BasicCommand/Skill/Container4/Skill4" to="UI/UI" method="_on_Skill4_pressed"]
+[connection signal="turn_finished" from="Event/Event1/Enemy" to="UILayer/UI" method="_on_Enemy_turn_finished"]
+[connection signal="enemy_turn_started" from="UILayer/UI" to="Event/Event1/Enemy" method="_on_enemy_turn_started"]
+[connection signal="player_attacked" from="UILayer/UI" to="Event/Event1/Enemy" method="_on_player_attacked"]
+[connection signal="turn_changed" from="UILayer/UI" to="Player/Camera" method="_on_UI_turn_changed"]
+[connection signal="mouse_entered" from="UILayer/UI/BasicCommand/Skill/Container/Skill1" to="UILayer/UI" method="_on_Skill1_mouse_entered"]
+[connection signal="mouse_exited" from="UILayer/UI/BasicCommand/Skill/Container/Skill1" to="UILayer/UI" method="_on_Skill1_mouse_exited"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill/Container/Skill1" to="UILayer/UI" method="_on_Skill1_pressed"]
+[connection signal="mouse_entered" from="UILayer/UI/BasicCommand/Skill/Container2/Skill2" to="UILayer/UI" method="_on_Skill2_mouse_entered"]
+[connection signal="mouse_exited" from="UILayer/UI/BasicCommand/Skill/Container2/Skill2" to="UILayer/UI" method="_on_Skill2_mouse_exited"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill/Container2/Skill2" to="UILayer/UI" method="_on_Skill2_pressed"]
+[connection signal="mouse_entered" from="UILayer/UI/BasicCommand/Skill/Container3/Skill3" to="UILayer/UI" method="_on_Skill3_mouse_entered"]
+[connection signal="mouse_exited" from="UILayer/UI/BasicCommand/Skill/Container3/Skill3" to="UILayer/UI" method="_on_Skill3_mouse_exited"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill/Container3/Skill3" to="UILayer/UI" method="_on_Skill3_pressed"]
+[connection signal="mouse_entered" from="UILayer/UI/BasicCommand/Skill/Container4/Skill4" to="UILayer/UI" method="_on_Skill4_mouse_entered"]
+[connection signal="mouse_exited" from="UILayer/UI/BasicCommand/Skill/Container4/Skill4" to="UILayer/UI" method="_on_Skill4_mouse_exited"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill/Container4/Skill4" to="UILayer/UI" method="_on_Skill4_pressed"]
