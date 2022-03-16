@@ -298,16 +298,6 @@ flags = 16
 atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 50, 40 )
 
-[sub_resource type="AtlasTexture" id=40]
-flags = 16
-atlas = ExtResource( 8 )
-region = Rect2( 50, 0, 50, 40 )
-
-[sub_resource type="AtlasTexture" id=41]
-flags = 16
-atlas = ExtResource( 8 )
-region = Rect2( 100, 0, 50, 40 )
-
 [sub_resource type="AtlasTexture" id=37]
 flags = 16
 atlas = ExtResource( 8 )
@@ -328,16 +318,21 @@ flags = 16
 atlas = ExtResource( 8 )
 region = Rect2( 150, 0, 50, 40 )
 
+[sub_resource type="AtlasTexture" id=40]
+flags = 16
+atlas = ExtResource( 8 )
+region = Rect2( 50, 0, 50, 40 )
+
+[sub_resource type="AtlasTexture" id=41]
+flags = 16
+atlas = ExtResource( 8 )
+region = Rect2( 100, 0, 50, 40 )
+
 [sub_resource type="SpriteFrames" id=43]
 animations = [ {
 "frames": [ SubResource( 36 ) ],
 "loop": false,
 "name": "idle",
-"speed": 3.0
-}, {
-"frames": [ SubResource( 40 ), SubResource( 40 ), SubResource( 41 ), SubResource( 40 ) ],
-"loop": false,
-"name": "attack",
 "speed": 3.0
 }, {
 "frames": [ SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
@@ -348,6 +343,11 @@ animations = [ {
 "frames": [ SubResource( 42 ) ],
 "loop": false,
 "name": "hurt",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 40 ), SubResource( 40 ), SubResource( 41 ), SubResource( 40 ) ],
+"loop": false,
+"name": "attack",
 "speed": 3.0
 } ]
 
@@ -1176,9 +1176,6 @@ party_data_file = "res://Resource/Battle_Data/current_party.json"
 [node name="BasicCommand" type="Control" parent="UILayer/UI"]
 margin_right = 40.0
 margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Cancel" type="Button" parent="UILayer/UI/BasicCommand"]
 modulate = Color( 1, 1, 1, 0 )
@@ -1192,9 +1189,6 @@ margin_right = 202.0
 margin_bottom = 387.0
 mouse_filter = 2
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Container" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill"]
 margin_left = 11.0
@@ -1225,9 +1219,6 @@ margin_right = 42.0
 margin_bottom = 19.0
 text = "Attack"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill/Container"]
 
@@ -1335,6 +1326,11 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill/Container4"]
+
+[node name="Tooltip" type="HBoxContainer" parent="UILayer/UI/BasicCommand"]
+margin_top = 217.0
+margin_right = 202.0
+margin_bottom = 311.0
 
 [node name="DefenceCommand" type="Control" parent="UILayer/UI"]
 margin_right = 40.0
