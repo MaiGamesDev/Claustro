@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gaenary.png-f630d29b7693558ca12fd981f2281f8f.stex"
+path="res://.import/cat_death.png-1ddfcaa05912485fbee9cb20fb56f38b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Actor/gaenary.png"
-dest_files=[ "res://.import/gaenary.png-f630d29b7693558ca12fd981f2281f8f.stex" ]
+source_file="res://Art/Actor/cat/cat_death.png"
+dest_files=[ "res://.import/cat_death.png-1ddfcaa05912485fbee9cb20fb56f38b.stex" ]
 
 [params]
 
@@ -24,12 +24,12 @@ flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

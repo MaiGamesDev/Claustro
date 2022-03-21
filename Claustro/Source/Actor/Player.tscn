@@ -2,9 +2,10 @@
 
 [ext_resource path="res://Source/Actor/Player.gd" type="Script" id=1]
 [ext_resource path="res://Resource/Font/neodgm.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Art/Actor/ippuniger-sheet.png" type="Texture" id=3]
-[ext_resource path="res://Art/Actor/elf-export.png" type="Texture" id=4]
-[ext_resource path="res://Art/Actor/knight.png" type="Texture" id=5]
+[ext_resource path="res://Art/Actor/cat/ippuniger-sheet.png" type="Texture" id=3]
+[ext_resource path="res://Art/Actor/mouse/elf-export.png" type="Texture" id=4]
+[ext_resource path="res://Art/Actor/dog/knight.png" type="Texture" id=5]
+
 
 [sub_resource type="CanvasItemMaterial" id=14]
 

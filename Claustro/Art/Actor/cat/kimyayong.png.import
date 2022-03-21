@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cat_block.png-993fc056e4c17996188c6d6e7f208275.stex"
+path="res://.import/kimyayong.png-3085a0f4baaa48d4b6805e641f5b791f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Actor/cat_block.png"
-dest_files=[ "res://.import/cat_block.png-993fc056e4c17996188c6d6e7f208275.stex" ]
+source_file="res://Art/Actor/cat/kimyayong.png"
+dest_files=[ "res://.import/kimyayong.png-3085a0f4baaa48d4b6805e641f5b791f.stex" ]
 
 [params]
 
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

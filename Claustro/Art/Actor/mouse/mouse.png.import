@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cat_battle.png-99bd983a4f8e79a08c71d2705526eae6.stex"
+path="res://.import/mouse.png-8eb4fec9e25d06ca91e159b0deed328f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Actor/cat_battle.png"
-dest_files=[ "res://.import/cat_battle.png-99bd983a4f8e79a08c71d2705526eae6.stex" ]
+source_file="res://Art/Actor/mouse/mouse.png"
+dest_files=[ "res://.import/mouse.png-8eb4fec9e25d06ca91e159b0deed328f.stex" ]
 
 [params]
 
@@ -23,7 +23,7 @@ flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=1
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false

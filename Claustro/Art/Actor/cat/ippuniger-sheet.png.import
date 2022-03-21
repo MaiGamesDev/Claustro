@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/ippuniger-sheet.png-e9608b91de19dfcb9b7e62cf50c6725b.s3tc.stex"
-path.etc2="res://.import/ippuniger-sheet.png-e9608b91de19dfcb9b7e62cf50c6725b.etc2.stex"
+path.s3tc="res://.import/ippuniger-sheet.png-ab5c292326be244ba73fd08c96fbf632.s3tc.stex"
+path.etc2="res://.import/ippuniger-sheet.png-ab5c292326be244ba73fd08c96fbf632.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Art/Actor/ippuniger-sheet.png"
-dest_files=[ "res://.import/ippuniger-sheet.png-e9608b91de19dfcb9b7e62cf50c6725b.s3tc.stex", "res://.import/ippuniger-sheet.png-e9608b91de19dfcb9b7e62cf50c6725b.etc2.stex" ]
+source_file="res://Art/Actor/cat/ippuniger-sheet.png"
+dest_files=[ "res://.import/ippuniger-sheet.png-ab5c292326be244ba73fd08c96fbf632.s3tc.stex", "res://.import/ippuniger-sheet.png-ab5c292326be244ba73fd08c96fbf632.etc2.stex" ]
 
 [params]
 

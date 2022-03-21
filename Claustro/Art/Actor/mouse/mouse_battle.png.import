@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/kimyayong.png-5b6f937b5c501ac987c67b071b155915.stex"
+path="res://.import/mouse_battle.png-8649dc661c710a0c294273210cb896d7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Actor/kimyayong.png"
-dest_files=[ "res://.import/kimyayong.png-5b6f937b5c501ac987c67b071b155915.stex" ]
+source_file="res://Art/Actor/mouse/mouse_battle.png"
+dest_files=[ "res://.import/mouse_battle.png-8649dc661c710a0c294273210cb896d7.stex" ]
 
 [params]
 
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

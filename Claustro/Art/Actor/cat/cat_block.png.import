@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gangji.png-237f3fa5ca473b4d6a5e2e69f71dff3a.stex"
+path="res://.import/cat_block.png-ed146cb55306c28c39de68dcc6a6ad26.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Actor/gangji.png"
-dest_files=[ "res://.import/gangji.png-237f3fa5ca473b4d6a5e2e69f71dff3a.stex" ]
+source_file="res://Art/Actor/cat/cat_block.png"
+dest_files=[ "res://.import/cat_block.png-ed146cb55306c28c39de68dcc6a6ad26.stex" ]
 
 [params]
 
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

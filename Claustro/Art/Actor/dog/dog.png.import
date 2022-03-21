@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mouse_battle.png-7a4517f27798e1c04d9b38ff18f12fdc.stex"
+path="res://.import/dog.png-6b3f2afaef5d3c0d7dd07d95ee799a75.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Actor/mouse_battle.png"
-dest_files=[ "res://.import/mouse_battle.png-7a4517f27798e1c04d9b38ff18f12fdc.stex" ]
+source_file="res://Art/Actor/dog/dog.png"
+dest_files=[ "res://.import/dog.png-6b3f2afaef5d3c0d7dd07d95ee799a75.stex" ]
 
 [params]
 

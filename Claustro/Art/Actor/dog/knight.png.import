@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/knight.png-058488b0fd9e6d291a33e931e167189c.s3tc.stex"
-path.etc2="res://.import/knight.png-058488b0fd9e6d291a33e931e167189c.etc2.stex"
+path.s3tc="res://.import/knight.png-883dd0a3c65cf5fb4e67143216f56de8.s3tc.stex"
+path.etc2="res://.import/knight.png-883dd0a3c65cf5fb4e67143216f56de8.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Art/Actor/knight.png"
-dest_files=[ "res://.import/knight.png-058488b0fd9e6d291a33e931e167189c.s3tc.stex", "res://.import/knight.png-058488b0fd9e6d291a33e931e167189c.etc2.stex" ]
+source_file="res://Art/Actor/dog/knight.png"
+dest_files=[ "res://.import/knight.png-883dd0a3c65cf5fb4e67143216f56de8.s3tc.stex", "res://.import/knight.png-883dd0a3c65cf5fb4e67143216f56de8.etc2.stex" ]
 
 [params]
 

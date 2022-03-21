@@ -23,12 +23,11 @@ onready var Skill1_sprite = Skill1.get_node("Skill1/Sprite")
 onready var Skill2_sprite = Skill2.get_node("Skill2/Sprite")
 onready var Skill3_sprite = Skill3.get_node("Skill3/Sprite")
 onready var Skill4_sprite = Skill4.get_node("Skill4/Sprite")
-var skill_sprite_array = [
-	Skill1_sprite,
-	Skill2_sprite,
-	Skill3_sprite,
-	Skill4_sprite
-]
+
+onready var Skill1_label = Skill1.get_node("Skill1/Label")
+onready var Skill2_label = Skill2.get_node("Skill2/Label")
+onready var Skill3_label = Skill3.get_node("Skill3/Label")
+onready var Skill4_label = Skill4.get_node("Skill4/Label")
 
 var current_skill = 0
 var current_party = 0
@@ -103,9 +102,24 @@ func update_card_image():
 	else:
 		return
 	
+	var skill_sprite_array = [
+		Skill1_sprite,
+		Skill2_sprite,
+		Skill3_sprite,
+		Skill4_sprite
+	]
+	var skill_label_array = [
+		Skill1_label,
+		Skill2_label,
+		Skill3_label,
+		Skill4_label
+	]
 	for i in 4:
-		var texture = "res://Art/UI/Skill_card/"+ current_chr + "/sc_" + skill_array[i] +".png"
-		print(skill_sprite_array[i])
+		print(skill_sprite_array[i].name)
+		var path = "res://Art/UI/Skill_card/"+ current_chr + "/sc_" + skill_array[i] +".png"
+		var texture = load(path)
+		skill_sprite_array[i].texture = texture
+		skill_label_array[i].text = skill_array[i]
 func update_hp(player : int, max_value : int, value: int):
 	if player == 0:
 		var text = str(value) + "/" + str(max_value)

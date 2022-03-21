@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dog_battle.png-0861a4a1e2626ceb2ba82c9a35e4657c.stex"
+path="res://.import/cat.png-b60c41147283f8fd6b82efbc3bffd060.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Actor/dog_battle.png"
-dest_files=[ "res://.import/dog_battle.png-0861a4a1e2626ceb2ba82c9a35e4657c.stex" ]
+source_file="res://Art/Actor/cat/cat.png"
+dest_files=[ "res://.import/cat.png-b60c41147283f8fd6b82efbc3bffd060.stex" ]
 
 [params]
 
@@ -23,7 +23,7 @@ flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=1
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
