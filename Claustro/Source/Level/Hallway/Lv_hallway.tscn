@@ -299,6 +299,11 @@ flags = 16
 atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 50, 40 )
 
+[sub_resource type="AtlasTexture" id=42]
+flags = 16
+atlas = ExtResource( 8 )
+region = Rect2( 150, 0, 50, 40 )
+
 [sub_resource type="AtlasTexture" id=37]
 flags = 16
 atlas = ExtResource( 8 )
@@ -324,16 +329,16 @@ flags = 16
 atlas = ExtResource( 8 )
 region = Rect2( 100, 0, 50, 40 )
 
-[sub_resource type="AtlasTexture" id=42]
-flags = 16
-atlas = ExtResource( 8 )
-region = Rect2( 150, 0, 50, 40 )
-
 [sub_resource type="SpriteFrames" id=43]
 animations = [ {
 "frames": [ SubResource( 36 ) ],
 "loop": false,
 "name": "idle",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 42 ) ],
+"loop": false,
+"name": "hurt",
 "speed": 3.0
 }, {
 "frames": [ SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
@@ -344,11 +349,6 @@ animations = [ {
 "frames": [ SubResource( 40 ), SubResource( 40 ), SubResource( 41 ), SubResource( 40 ) ],
 "loop": false,
 "name": "attack",
-"speed": 3.0
-}, {
-"frames": [ SubResource( 42 ) ],
-"loop": false,
-"name": "hurt",
 "speed": 3.0
 } ]
 
@@ -1171,8 +1171,8 @@ environment = ExtResource( 22 )
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="UI" type="Control" parent="UILayer"]
-margin_right = 202.0
-margin_bottom = 360.0
+margin_right = 480.0
+margin_bottom = 320.0
 script = ExtResource( 13 )
 skill_data_file = "res://Resource/Battle_Data/current_skill.json"
 party_data_file = "res://Resource/Battle_Data/current_party.json"
@@ -1188,9 +1188,9 @@ margin_bottom = 360.0
 flat = true
 
 [node name="Skill" type="HBoxContainer" parent="UILayer/UI/BasicCommand"]
-margin_top = 283.0
+margin_top = 212.0
 margin_right = 202.0
-margin_bottom = 387.0
+margin_bottom = 316.0
 mouse_filter = 2
 alignment = 1
 
@@ -1330,6 +1330,150 @@ valign = 1
 
 [node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill/Container4"]
 
+[node name="Skill2" type="HBoxContainer" parent="UILayer/UI/BasicCommand"]
+margin_left = 278.0
+margin_top = 212.0
+margin_right = 480.0
+margin_bottom = 316.0
+mouse_filter = 2
+alignment = 1
+
+[node name="Container" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill2"]
+margin_left = 11.0
+margin_right = 53.0
+margin_bottom = 104.0
+
+[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill2/Container"]
+margin_right = 42.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Skill1" type="Button" parent="UILayer/UI/BasicCommand/Skill2/Container"]
+margin_top = 34.0
+margin_right = 42.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 42, 70 )
+flat = true
+
+[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill2/Container/Skill1"]
+show_behind_parent = true
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill2/Container/Skill1"]
+show_behind_parent = true
+margin_right = 84.0
+margin_bottom = 38.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 115 )
+text = "Magicball"
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill2/Container"]
+
+[node name="Container2" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill2"]
+margin_left = 57.0
+margin_right = 99.0
+margin_bottom = 104.0
+
+[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill2/Container2"]
+margin_right = 42.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Skill2" type="Button" parent="UILayer/UI/BasicCommand/Skill2/Container2"]
+margin_top = 34.0
+margin_right = 42.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 42, 70 )
+flat = true
+
+[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill2/Container2/Skill2"]
+show_behind_parent = true
+texture = ExtResource( 24 )
+centered = false
+
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill2/Container2/Skill2"]
+show_behind_parent = true
+margin_right = 84.0
+margin_bottom = 38.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 115 )
+text = "Magicball"
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill2/Container2"]
+
+[node name="Container3" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill2"]
+margin_left = 103.0
+margin_right = 145.0
+margin_bottom = 104.0
+
+[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill2/Container3"]
+margin_right = 42.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Skill3" type="Button" parent="UILayer/UI/BasicCommand/Skill2/Container3"]
+margin_top = 34.0
+margin_right = 42.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 42, 70 )
+flat = true
+
+[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill2/Container3/Skill3"]
+show_behind_parent = true
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill2/Container3/Skill3"]
+show_behind_parent = true
+margin_right = 84.0
+margin_bottom = 38.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 115 )
+text = "Magicball"
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill2/Container3"]
+
+[node name="Container4" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill2"]
+margin_left = 149.0
+margin_right = 191.0
+margin_bottom = 104.0
+
+[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill2/Container4"]
+margin_right = 42.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Skill4" type="Button" parent="UILayer/UI/BasicCommand/Skill2/Container4"]
+margin_top = 34.0
+margin_right = 42.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 42, 70 )
+flat = true
+
+[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill2/Container4/Skill4"]
+show_behind_parent = true
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill2/Container4/Skill4"]
+show_behind_parent = true
+margin_right = 84.0
+margin_bottom = 38.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 115 )
+text = "Magicball"
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill2/Container4"]
+
 [node name="Tooltip" type="HBoxContainer" parent="UILayer/UI/BasicCommand"]
 margin_top = 188.0
 margin_right = 202.0
@@ -1380,7 +1524,8 @@ anims/P2 = SubResource( 57 )
 anims/RESET = SubResource( 58 )
 
 [node name="State" type="Control" parent="UILayer/UI"]
-margin_right = 40.0
+margin_left = 147.0
+margin_right = 187.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1409,9 +1554,6 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="UILayer/UI/State"]
 margin_right = 202.0
 margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Progress" type="Control" parent="UILayer/UI/State/VBoxContainer"]
 margin_right = 202.0
@@ -1541,3 +1683,15 @@ texture = ExtResource( 25 )
 [connection signal="mouse_entered" from="UILayer/UI/BasicCommand/Skill/Container4/Skill4" to="UILayer/UI" method="_on_Skill4_mouse_entered"]
 [connection signal="mouse_exited" from="UILayer/UI/BasicCommand/Skill/Container4/Skill4" to="UILayer/UI" method="_on_Skill4_mouse_exited"]
 [connection signal="pressed" from="UILayer/UI/BasicCommand/Skill/Container4/Skill4" to="UILayer/UI" method="_on_Skill4_pressed"]
+[connection signal="mouse_entered" from="UILayer/UI/BasicCommand/Skill2/Container/Skill1" to="UILayer/UI" method="_on_Skill1_mouse_entered"]
+[connection signal="mouse_exited" from="UILayer/UI/BasicCommand/Skill2/Container/Skill1" to="UILayer/UI" method="_on_Skill1_mouse_exited"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill2/Container/Skill1" to="UILayer/UI" method="_on_Skill1_pressed"]
+[connection signal="mouse_entered" from="UILayer/UI/BasicCommand/Skill2/Container2/Skill2" to="UILayer/UI" method="_on_Skill2_mouse_entered"]
+[connection signal="mouse_exited" from="UILayer/UI/BasicCommand/Skill2/Container2/Skill2" to="UILayer/UI" method="_on_Skill2_mouse_exited"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill2/Container2/Skill2" to="UILayer/UI" method="_on_Skill2_pressed"]
+[connection signal="mouse_entered" from="UILayer/UI/BasicCommand/Skill2/Container3/Skill3" to="UILayer/UI" method="_on_Skill3_mouse_entered"]
+[connection signal="mouse_exited" from="UILayer/UI/BasicCommand/Skill2/Container3/Skill3" to="UILayer/UI" method="_on_Skill3_mouse_exited"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill2/Container3/Skill3" to="UILayer/UI" method="_on_Skill3_pressed"]
+[connection signal="mouse_entered" from="UILayer/UI/BasicCommand/Skill2/Container4/Skill4" to="UILayer/UI" method="_on_Skill4_mouse_entered"]
+[connection signal="mouse_exited" from="UILayer/UI/BasicCommand/Skill2/Container4/Skill4" to="UILayer/UI" method="_on_Skill4_mouse_exited"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill2/Container4/Skill4" to="UILayer/UI" method="_on_Skill4_pressed"]
