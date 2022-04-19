@@ -1,0 +1,12 @@
+{
+	"cat":{
+		"magicball":{
+		    "name":"Magicball",
+		    "type":"ma",
+		    "cost":"15",
+		    "rarity":"0",
+		    "numbers":"5",
+		    "info":"%num%의 피해를 줍니다."
+		}
+	}
+}

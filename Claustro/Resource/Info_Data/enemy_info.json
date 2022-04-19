@@ -1,6 +1,8 @@
 {
-	"id_1":{
-		"name": "slime",
+	"level1":{
+		"slime":{
+			"name":"Slime"
+}
 	
 	}
 }

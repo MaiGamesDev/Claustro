@@ -23,9 +23,7 @@ func _input(event):
 
 func _on_UI_turn_changed(turn):
 	match turn:
-		"P1":
+		"PLAYER":
 			animationState.travel("left_side")
-		"P2":
-			animationState.travel("right_side")
-		"E1":
+		"ENEMY":
 			animationState.travel("enemy_side")

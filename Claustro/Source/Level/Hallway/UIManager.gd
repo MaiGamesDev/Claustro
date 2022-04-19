@@ -1,6 +1,6 @@
 extends Control
 
-var current_turn = "P1"
+var current_turn = "PLAYER"
 
 signal turn_changed
 signal enemy_turn_started
@@ -8,6 +8,7 @@ signal player_attacked
 
 export(String, FILE, "*.json") var skill_data_file
 export(String, FILE, "*.json") var party_data_file
+export(String, FILE, "*.json") var skill_info_file
 
 onready var Skill1 = $BasicCommand/Skill/Container
 onready var Skill2 = $BasicCommand/Skill/Container2
@@ -29,6 +30,10 @@ onready var Skill2_label = Skill2.get_node("Skill2/Label")
 onready var Skill3_label = Skill3.get_node("Skill3/Label")
 onready var Skill4_label = Skill4.get_node("Skill4/Label")
 
+var skill_data
+var party_data
+var skill_info
+
 var current_skill = 0
 var current_party = 0
 
@@ -40,22 +45,18 @@ func change_turn(turn : String):
 	emit_signal("turn_changed",current_turn)
 	
 	match current_turn:
-		"P1":
+		"PLAYER":
 			pass
-		"P2":
-			pass
-		"E1":
+		"ENEMY":
 			emit_signal("enemy_turn_started")
 			
 func next_turn():
 	match current_turn:
-		"P1":
-			change_turn("P2")
+		"PLAYER":
+			change_turn("ENEMY")
 			update_card_image()
-		"P2":
-			change_turn("E1")
-		"E1":
-			change_turn("P1")
+		"ENEMY":
+			change_turn("PLAYER")
 			update_card_image()
 
 func update_current_card(number : int,is_entered : bool):
@@ -80,24 +81,17 @@ func update_current_card(number : int,is_entered : bool):
 func update_card_image():
 	load_skill_data()
 	load_party_data()
+	load_skill_info()
 	
 	var current_chr
 	var skill_array = ["","","",""]
-	if current_turn == "P1":
+	if current_turn == "PLAYER":
 		current_chr = current_party.player1
 		skill_array = [
 			current_skill.player1_skill_1,
 			current_skill.player1_skill_2,
 			current_skill.player1_skill_3,
 			current_skill.player1_skill_4
-		]
-	elif current_turn == "P2":
-		current_chr = current_party.player2
-		skill_array = [
-			current_skill.player2_skill_1,
-			current_skill.player2_skill_2,
-			current_skill.player2_skill_3,
-			current_skill.player2_skill_4
 		]
 	else:
 		return
@@ -131,20 +125,30 @@ func update_hp(player : int, max_value : int, value: int):
 func load_skill_data():
 	# skill data 불러오기
 	var file = File.new()
-	if not file.file_exists(skill_data_file):
+	if not file.file_exists(skill_data):
 		print("ERROR : can't find skill_data_file")
 		return
-	file.open(skill_data_file, File.READ)
+	file.open(skill_data, File.READ)
 	current_skill = parse_json(file.get_as_text())
 	file.close()
 	
 func load_party_data():
 	# party data 불러오기
 	var file = File.new()
-	if not file.file_exists(party_data_file):
+	if not file.file_exists(party_data):
 		print("ERROR : can't find party_data_file")
 		return
-	file.open(party_data_file, File.READ)
+	file.open(party_data, File.READ)
+	current_party = parse_json(file.get_as_text())
+	file.close()
+	
+func load_skill_info():
+	# party data 불러오기
+	var file = File.new()
+	if not file.file_exists(skill_info):
+		print("ERROR : can't find party_data_file")
+		return
+	file.open(skill_info, File.READ)
 	current_party = parse_json(file.get_as_text())
 	file.close()
 	
