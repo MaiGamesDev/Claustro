@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=2]
+[gd_scene load_steps=114 format=2]
 
 [ext_resource path="res://Art/UI/tp_bg.png" type="Texture" id=1]
 [ext_resource path="res://Art/UI/icon_cat.png" type="Texture" id=2]
@@ -28,6 +28,8 @@
 [ext_resource path="res://Art/UI/magic_type_icon.png" type="Texture" id=26]
 [ext_resource path="res://Art/UI/melee_type_icon.png" type="Texture" id=27]
 [ext_resource path="res://Resource/Font/neodgm.ttf" type="DynamicFontData" id=28]
+[ext_resource path="res://Source/Level/Hallway/Skillcard.gd" type="Script" id=29]
+[ext_resource path="res://Art/UI/btn_turnend.png" type="Texture" id=30]
 
 [sub_resource type="AnimationNodeAnimation" id=14]
 animation = "enemy_side"
@@ -715,9 +717,6 @@ font_data = ExtResource( 28 )
 [sub_resource type="DynamicFont" id=117]
 font_data = ExtResource( 28 )
 
-[sub_resource type="RectangleShape2D" id=23]
-extents = Vector2( 50, 30 )
-
 [sub_resource type="Animation" id=56]
 resource_name = "E1"
 length = 0.1
@@ -732,18 +731,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("UILayer/UI/DefenceCommand:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
 }
 
 [sub_resource type="Animation" id=27]
@@ -761,18 +748,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ true ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("UILayer/UI/DefenceCommand:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=57]
 resource_name = "P2"
@@ -789,18 +764,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ true ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("UILayer/UI/DefenceCommand:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=58]
 length = 0.001
@@ -811,18 +774,6 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("UILayer/UI/DefenceCommand:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -1188,42 +1139,38 @@ skill_info_file = "res://Resource/Info_Data/skill_info.json"
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Cancel" type="Button" parent="UILayer/UI/BasicCommand"]
-modulate = Color( 1, 1, 1, 0 )
+[node name="Skill" type="HBoxContainer" parent="UILayer/UI/BasicCommand"]
+margin_top = 256.0
 margin_right = 202.0
 margin_bottom = 360.0
-flat = true
-
-[node name="Skill" type="HBoxContainer" parent="UILayer/UI/BasicCommand"]
-margin_top = 212.0
-margin_right = 202.0
-margin_bottom = 316.0
 mouse_filter = 2
 alignment = 1
 
-[node name="Container" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill"]
+[node name="Skill1" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill"]
 margin_left = 11.0
 margin_right = 53.0
 margin_bottom = 104.0
+mouse_filter = 0
+script = ExtResource( 29 )
 
-[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill/Container"]
+[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill/Skill1"]
 margin_right = 42.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 
-[node name="Skill1" type="Button" parent="UILayer/UI/BasicCommand/Skill/Container"]
+[node name="Skill" type="Button" parent="UILayer/UI/BasicCommand/Skill/Skill1"]
 margin_top = 34.0
 margin_right = 42.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 42, 70 )
 flat = true
 
-[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill/Container/Skill1"]
+[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill/Skill1/Skill"]
 show_behind_parent = true
 texture = ExtResource( 4 )
 centered = false
 
-[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill/Container/Skill1"]
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill/Skill1/Skill"]
 show_behind_parent = true
 margin_right = 84.0
 margin_bottom = 38.0
@@ -1233,31 +1180,31 @@ text = "Magicball"
 align = 1
 valign = 1
 
-[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill/Container"]
+[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill/Skill1"]
 
-[node name="Container2" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill"]
+[node name="Skill2" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill"]
 margin_left = 57.0
 margin_right = 99.0
 margin_bottom = 104.0
 
-[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill/Container2"]
+[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill/Skill2"]
 margin_right = 42.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 
-[node name="Skill2" type="Button" parent="UILayer/UI/BasicCommand/Skill/Container2"]
+[node name="Skill" type="Button" parent="UILayer/UI/BasicCommand/Skill/Skill2"]
 margin_top = 34.0
 margin_right = 42.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 42, 70 )
 flat = true
 
-[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill/Container2/Skill2"]
+[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill/Skill2/Skill"]
 show_behind_parent = true
 texture = ExtResource( 24 )
 centered = false
 
-[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill/Container2/Skill2"]
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill/Skill2/Skill"]
 show_behind_parent = true
 margin_right = 84.0
 margin_bottom = 38.0
@@ -1267,31 +1214,31 @@ text = "Magicball"
 align = 1
 valign = 1
 
-[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill/Container2"]
+[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill/Skill2"]
 
-[node name="Container3" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill"]
+[node name="Skill3" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill"]
 margin_left = 103.0
 margin_right = 145.0
 margin_bottom = 104.0
 
-[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill/Container3"]
+[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill/Skill3"]
 margin_right = 42.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 
-[node name="Skill3" type="Button" parent="UILayer/UI/BasicCommand/Skill/Container3"]
+[node name="Skill" type="Button" parent="UILayer/UI/BasicCommand/Skill/Skill3"]
 margin_top = 34.0
 margin_right = 42.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 42, 70 )
 flat = true
 
-[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill/Container3/Skill3"]
+[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill/Skill3/Skill"]
 show_behind_parent = true
 texture = ExtResource( 4 )
 centered = false
 
-[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill/Container3/Skill3"]
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill/Skill3/Skill"]
 show_behind_parent = true
 margin_right = 84.0
 margin_bottom = 38.0
@@ -1301,31 +1248,31 @@ text = "Magicball"
 align = 1
 valign = 1
 
-[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill/Container3"]
+[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill/Skill3"]
 
-[node name="Container4" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill"]
+[node name="Skill4" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill"]
 margin_left = 149.0
 margin_right = 191.0
 margin_bottom = 104.0
 
-[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill/Container4"]
+[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill/Skill4"]
 margin_right = 42.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 
-[node name="Skill4" type="Button" parent="UILayer/UI/BasicCommand/Skill/Container4"]
+[node name="Skill" type="Button" parent="UILayer/UI/BasicCommand/Skill/Skill4"]
 margin_top = 34.0
 margin_right = 42.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 42, 70 )
 flat = true
 
-[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill/Container4/Skill4"]
+[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill/Skill4/Skill"]
 show_behind_parent = true
 texture = ExtResource( 5 )
 centered = false
 
-[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill/Container4/Skill4"]
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill/Skill4/Skill"]
 show_behind_parent = true
 margin_right = 84.0
 margin_bottom = 38.0
@@ -1335,25 +1282,175 @@ text = "Magicball"
 align = 1
 valign = 1
 
-[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill/Container4"]
+[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill/Skill4"]
 
-[node name="Tooltip" type="MarginContainer" parent="UILayer/UI/BasicCommand"]
-margin_left = 109.0
-margin_top = 98.0
-margin_right = 311.0
-margin_bottom = 192.0
+[node name="Skill2" type="HBoxContainer" parent="UILayer/UI/BasicCommand"]
+margin_left = 238.0
+margin_top = 256.0
+margin_right = 440.0
+margin_bottom = 360.0
+mouse_filter = 2
+alignment = 1
+
+[node name="Skill1" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill2"]
+margin_left = 11.0
+margin_right = 53.0
+margin_bottom = 104.0
+mouse_filter = 0
+script = ExtResource( 29 )
+
+[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill2/Skill1"]
+margin_right = 42.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Skill" type="Button" parent="UILayer/UI/BasicCommand/Skill2/Skill1"]
+margin_top = 34.0
+margin_right = 42.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 42, 70 )
+flat = true
+
+[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill2/Skill1/Skill"]
+show_behind_parent = true
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill2/Skill1/Skill"]
+show_behind_parent = true
+margin_right = 84.0
+margin_bottom = 38.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 115 )
+text = "Magicball"
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill2/Skill1"]
+
+[node name="Skill2" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill2"]
+margin_left = 57.0
+margin_right = 99.0
+margin_bottom = 104.0
+
+[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill2/Skill2"]
+margin_right = 42.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Skill" type="Button" parent="UILayer/UI/BasicCommand/Skill2/Skill2"]
+margin_top = 34.0
+margin_right = 42.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 42, 70 )
+flat = true
+
+[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill2/Skill2/Skill"]
+show_behind_parent = true
+texture = ExtResource( 24 )
+centered = false
+
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill2/Skill2/Skill"]
+show_behind_parent = true
+margin_right = 84.0
+margin_bottom = 38.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 115 )
+text = "Magicball"
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill2/Skill2"]
+
+[node name="Skill3" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill2"]
+margin_left = 103.0
+margin_right = 145.0
+margin_bottom = 104.0
+
+[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill2/Skill3"]
+margin_right = 42.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Skill" type="Button" parent="UILayer/UI/BasicCommand/Skill2/Skill3"]
+margin_top = 34.0
+margin_right = 42.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 42, 70 )
+flat = true
+
+[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill2/Skill3/Skill"]
+show_behind_parent = true
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill2/Skill3/Skill"]
+show_behind_parent = true
+margin_right = 84.0
+margin_bottom = 38.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 115 )
+text = "Magicball"
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill2/Skill3"]
+
+[node name="Skill4" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Skill2"]
+margin_left = 149.0
+margin_right = 191.0
+margin_bottom = 104.0
+
+[node name="Space" type="Control" parent="UILayer/UI/BasicCommand/Skill2/Skill4"]
+margin_right = 42.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Skill" type="Button" parent="UILayer/UI/BasicCommand/Skill2/Skill4"]
+margin_top = 34.0
+margin_right = 42.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 42, 70 )
+flat = true
+
+[node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill2/Skill4/Skill"]
+show_behind_parent = true
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill2/Skill4/Skill"]
+show_behind_parent = true
+margin_right = 84.0
+margin_bottom = 38.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 115 )
+text = "Magicball"
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill2/Skill4"]
+
+[node name="Tooltip1" type="MarginContainer" parent="UILayer/UI/BasicCommand"]
+margin_left = 5.0
+margin_top = 179.0
+margin_right = 207.0
+margin_bottom = 273.0
+mouse_filter = 2
 size_flags_horizontal = 3
+__meta__ = {
+"_editor_description_": "플레이어1 스킬카드 툴팁"
+}
 
-[node name="Background" type="ColorRect" parent="UILayer/UI/BasicCommand/Tooltip"]
+[node name="Background" type="ColorRect" parent="UILayer/UI/BasicCommand/Tooltip1"]
 margin_right = 202.0
 margin_bottom = 94.0
 color = Color( 0, 0, 0, 0.415686 )
 
-[node name="VBox" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Tooltip"]
+[node name="VBox" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Tooltip1"]
 margin_right = 202.0
 margin_bottom = 94.0
 
-[node name="Name" type="Label" parent="UILayer/UI/BasicCommand/Tooltip/VBox"]
+[node name="Name" type="Label" parent="UILayer/UI/BasicCommand/Tooltip1/VBox"]
 margin_right = 202.0
 margin_bottom = 16.0
 mouse_filter = 0
@@ -1361,27 +1458,111 @@ custom_fonts/font = SubResource( 116 )
 text = "Magicball"
 align = 1
 
-[node name="Info" type="Label" parent="UILayer/UI/BasicCommand/Tooltip/VBox"]
+[node name="Info" type="Label" parent="UILayer/UI/BasicCommand/Tooltip1/VBox"]
 margin_top = 20.0
 margin_right = 202.0
-margin_bottom = 36.0
+margin_bottom = 94.0
+size_flags_vertical = 7
 custom_fonts/font = SubResource( 117 )
+text = "5 데미지를 줍니다."
+align = 1
 valign = 1
 
-[node name="DefenceCommand" type="Control" parent="UILayer/UI"]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="Tooltip2" type="MarginContainer" parent="UILayer/UI/BasicCommand"]
+margin_left = 237.0
+margin_top = 179.0
+margin_right = 439.0
+margin_bottom = 273.0
+mouse_filter = 2
+size_flags_horizontal = 3
 __meta__ = {
-"_edit_use_anchors_": false
+"_editor_description_": "플레이어2 스킬카드 툴팁"
 }
 
-[node name="Defence1" type="TouchScreenButton" parent="UILayer/UI/DefenceCommand"]
-position = Vector2( 0, 299 )
-shape = SubResource( 23 )
+[node name="Background" type="ColorRect" parent="UILayer/UI/BasicCommand/Tooltip2"]
+margin_right = 202.0
+margin_bottom = 94.0
+color = Color( 0, 0, 0, 0.415686 )
 
-[node name="Defence2" type="TouchScreenButton" parent="UILayer/UI/DefenceCommand"]
-position = Vector2( 102, 299 )
-shape = SubResource( 23 )
+[node name="VBox" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Tooltip2"]
+margin_right = 202.0
+margin_bottom = 94.0
+
+[node name="Name" type="Label" parent="UILayer/UI/BasicCommand/Tooltip2/VBox"]
+margin_right = 202.0
+margin_bottom = 16.0
+mouse_filter = 0
+custom_fonts/font = SubResource( 116 )
+text = "Magicball"
+align = 1
+
+[node name="Info" type="Label" parent="UILayer/UI/BasicCommand/Tooltip2/VBox"]
+margin_top = 20.0
+margin_right = 202.0
+margin_bottom = 94.0
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 117 )
+text = "5 데미지를 줍니다."
+align = 1
+valign = 1
+
+[node name="Tooltip3" type="MarginContainer" parent="UILayer/UI/BasicCommand"]
+visible = false
+margin_left = 126.0
+margin_top = 179.0
+margin_right = 328.0
+margin_bottom = 273.0
+mouse_filter = 2
+size_flags_horizontal = 3
+__meta__ = {
+"_editor_description_": "협동 스킬카드 툴팁"
+}
+
+[node name="Background" type="ColorRect" parent="UILayer/UI/BasicCommand/Tooltip3"]
+margin_right = 202.0
+margin_bottom = 94.0
+color = Color( 0, 0, 0, 0.415686 )
+
+[node name="VBox" type="VBoxContainer" parent="UILayer/UI/BasicCommand/Tooltip3"]
+margin_right = 202.0
+margin_bottom = 94.0
+
+[node name="Name" type="Label" parent="UILayer/UI/BasicCommand/Tooltip3/VBox"]
+margin_right = 202.0
+margin_bottom = 16.0
+mouse_filter = 0
+custom_fonts/font = SubResource( 116 )
+text = "Magicball"
+align = 1
+
+[node name="Info" type="Label" parent="UILayer/UI/BasicCommand/Tooltip3/VBox"]
+margin_top = 20.0
+margin_right = 202.0
+margin_bottom = 94.0
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 117 )
+text = "5 데미지를 줍니다."
+align = 1
+valign = 1
+
+[node name="TurnEnd" type="TextureButton" parent="UILayer/UI/BasicCommand"]
+margin_left = 445.0
+margin_top = 309.0
+margin_right = 525.0
+margin_bottom = 339.0
+texture_normal = ExtResource( 30 )
+__meta__ = {
+"_editor_description_": "턴 종료"
+}
+
+[node name="Label" type="Label" parent="UILayer/UI/BasicCommand/TurnEnd"]
+margin_right = 80.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Turn End "
+align = 1
+valign = 1
 
 [node name="UIAnimation" type="AnimationPlayer" parent="UILayer/UI"]
 root_node = NodePath("../../..")
@@ -1392,9 +1573,9 @@ anims/P2 = SubResource( 57 )
 anims/RESET = SubResource( 58 )
 
 [node name="State" type="Control" parent="UILayer/UI"]
-margin_left = 147.0
-margin_right = 187.0
-margin_bottom = 40.0
+margin_left = 156.0
+margin_right = 358.0
+margin_bottom = 44.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1539,15 +1720,14 @@ texture = ExtResource( 25 )
 [connection signal="enemy_turn_started" from="UILayer/UI" to="Event/Event1/Enemy" method="_on_enemy_turn_started"]
 [connection signal="player_attacked" from="UILayer/UI" to="Event/Event1/Enemy" method="_on_player_attacked"]
 [connection signal="turn_changed" from="UILayer/UI" to="Player/Camera" method="_on_UI_turn_changed"]
-[connection signal="mouse_entered" from="UILayer/UI/BasicCommand/Skill/Container/Skill1" to="UILayer/UI" method="_on_Skill1_mouse_entered"]
-[connection signal="mouse_exited" from="UILayer/UI/BasicCommand/Skill/Container/Skill1" to="UILayer/UI" method="_on_Skill1_mouse_exited"]
-[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill/Container/Skill1" to="UILayer/UI" method="_on_Skill1_pressed"]
-[connection signal="mouse_entered" from="UILayer/UI/BasicCommand/Skill/Container2/Skill2" to="UILayer/UI" method="_on_Skill2_mouse_entered"]
-[connection signal="mouse_exited" from="UILayer/UI/BasicCommand/Skill/Container2/Skill2" to="UILayer/UI" method="_on_Skill2_mouse_exited"]
-[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill/Container2/Skill2" to="UILayer/UI" method="_on_Skill2_pressed"]
-[connection signal="mouse_entered" from="UILayer/UI/BasicCommand/Skill/Container3/Skill3" to="UILayer/UI" method="_on_Skill3_mouse_entered"]
-[connection signal="mouse_exited" from="UILayer/UI/BasicCommand/Skill/Container3/Skill3" to="UILayer/UI" method="_on_Skill3_mouse_exited"]
-[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill/Container3/Skill3" to="UILayer/UI" method="_on_Skill3_pressed"]
-[connection signal="mouse_entered" from="UILayer/UI/BasicCommand/Skill/Container4/Skill4" to="UILayer/UI" method="_on_Skill4_mouse_entered"]
-[connection signal="mouse_exited" from="UILayer/UI/BasicCommand/Skill/Container4/Skill4" to="UILayer/UI" method="_on_Skill4_mouse_exited"]
-[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill/Container4/Skill4" to="UILayer/UI" method="_on_Skill4_pressed"]
+[connection signal="mouse_entered" from="UILayer/UI/BasicCommand/Skill/Skill1" to="UILayer/UI/BasicCommand/Skill/Skill1" method="_on_mouse_entered"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill/Skill1/Skill" to="UILayer/UI" method="_on_Skill1_pressed"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill/Skill2/Skill" to="UILayer/UI" method="_on_Skill2_pressed"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill/Skill3/Skill" to="UILayer/UI" method="_on_Skill3_pressed"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill/Skill4/Skill" to="UILayer/UI" method="_on_Skill4_pressed"]
+[connection signal="mouse_entered" from="UILayer/UI/BasicCommand/Skill2/Skill1" to="UILayer/UI/BasicCommand/Skill2/Skill1" method="_on_mouse_entered"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill2/Skill1/Skill" to="UILayer/UI" method="_on_Skill1_pressed"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill2/Skill2/Skill" to="UILayer/UI" method="_on_Skill2_pressed"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill2/Skill3/Skill" to="UILayer/UI" method="_on_Skill3_pressed"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/Skill2/Skill4/Skill" to="UILayer/UI" method="_on_Skill4_pressed"]
+[connection signal="pressed" from="UILayer/UI/BasicCommand/TurnEnd" to="UILayer/UI" method="_on_TurnEnd_pressed"]

@@ -10,29 +10,23 @@ export(String, FILE, "*.json") var skill_data_file
 export(String, FILE, "*.json") var party_data_file
 export(String, FILE, "*.json") var skill_info_file
 
-onready var Skill1 = $BasicCommand/Skill/Container
-onready var Skill2 = $BasicCommand/Skill/Container2
-onready var Skill3 = $BasicCommand/Skill/Container3
-onready var Skill4 = $BasicCommand/Skill/Container4
+onready var Skill1 = $BasicCommand/Skill/Skill1
+onready var Skill2 = $BasicCommand/Skill/Skill2
+onready var Skill3 = $BasicCommand/Skill/Skill3
+onready var Skill4 = $BasicCommand/Skill/Skill4
 
-onready var Skill1_space = Skill1.get_node("Space")
-onready var Skill2_space = Skill2.get_node("Space")
-onready var Skill3_space = Skill3.get_node("Space")
-onready var Skill4_space = Skill4.get_node("Space")
 
-onready var Skill1_sprite = Skill1.get_node("Skill1/Sprite")
-onready var Skill2_sprite = Skill2.get_node("Skill2/Sprite")
-onready var Skill3_sprite = Skill3.get_node("Skill3/Sprite")
-onready var Skill4_sprite = Skill4.get_node("Skill4/Sprite")
+onready var Skill1_sprite = Skill1.get_node("Skill/Sprite")
+onready var Skill2_sprite = Skill2.get_node("Skill/Sprite")
+onready var Skill3_sprite = Skill3.get_node("Skill/Sprite")
+onready var Skill4_sprite = Skill4.get_node("Skill/Sprite")
 
-onready var Skill1_label = Skill1.get_node("Skill1/Label")
-onready var Skill2_label = Skill2.get_node("Skill2/Label")
-onready var Skill3_label = Skill3.get_node("Skill3/Label")
-onready var Skill4_label = Skill4.get_node("Skill4/Label")
+onready var Skill1_label = Skill1.get_node("Skill/Label")
+onready var Skill2_label = Skill2.get_node("Skill/Label")
+onready var Skill3_label = Skill3.get_node("Skill/Label")
+onready var Skill4_label = Skill4.get_node("Skill/Label")
 
-var skill_data
-var party_data
-var skill_info
+var skill_info = 0
 
 var current_skill = 0
 var current_party = 0
@@ -59,25 +53,6 @@ func next_turn():
 			change_turn("PLAYER")
 			update_card_image()
 
-func update_current_card(number : int,is_entered : bool):
-	var spaces = [
-		Skill1_space,
-		Skill2_space,
-		Skill3_space,
-		Skill4_space
-	]
-	var space = spaces[number]
-	var tween = space.get_node("../Tween")
-	
-	var value
-	if is_entered:
-		value = 0
-	else:
-		value = 30
-		
-	tween.interpolate_property(space, "rect_min_size:y", space.rect_min_size.y, value, 1.0, tween.TRANS_QUINT, tween.EASE_OUT)
-	tween.start()
-	
 func update_card_image():
 	load_skill_data()
 	load_party_data()
@@ -114,6 +89,7 @@ func update_card_image():
 		var texture = load(path)
 		skill_sprite_array[i].texture = texture
 		skill_label_array[i].text = skill_array[i]
+		
 func update_hp(player : int, max_value : int, value: int):
 	if player == 0:
 		var text = str(value) + "/" + str(max_value)
@@ -125,31 +101,31 @@ func update_hp(player : int, max_value : int, value: int):
 func load_skill_data():
 	# skill data 불러오기
 	var file = File.new()
-	if not file.file_exists(skill_data):
+	if not file.file_exists(skill_data_file):
 		print("ERROR : can't find skill_data_file")
 		return
-	file.open(skill_data, File.READ)
+	file.open(skill_data_file, File.READ)
 	current_skill = parse_json(file.get_as_text())
 	file.close()
 	
 func load_party_data():
 	# party data 불러오기
 	var file = File.new()
-	if not file.file_exists(party_data):
+	if not file.file_exists(party_data_file):
 		print("ERROR : can't find party_data_file")
 		return
-	file.open(party_data, File.READ)
+	file.open(party_data_file, File.READ)
 	current_party = parse_json(file.get_as_text())
 	file.close()
 	
 func load_skill_info():
 	# party data 불러오기
 	var file = File.new()
-	if not file.file_exists(skill_info):
+	if not file.file_exists(skill_info_file):
 		print("ERROR : can't find party_data_file")
 		return
-	file.open(skill_info, File.READ)
-	current_party = parse_json(file.get_as_text())
+	file.open(skill_info_file, File.READ)
+	skill_info = parse_json(file.get_as_text())
 	file.close()
 	
 	
@@ -157,39 +133,19 @@ func load_skill_info():
 func _on_Enemy_turn_finished():
 	next_turn()
 
-
 func _on_player1_hp_updated(max_hp : int, hp : int):
 	update_hp(0,max_hp,hp)
 
 func _on_player2_hp_updated(max_hp : int, hp : int):
 	update_hp(1,max_hp,hp)
 
-
-func _on_Skill1_mouse_entered():
-	update_current_card(0,true)
-func _on_Skill2_mouse_entered():
-	update_current_card(1,true)
-func _on_Skill3_mouse_entered():
-	update_current_card(2,true)
-func _on_Skill4_mouse_entered():
-	update_current_card(3,true)
-func _on_Skill1_mouse_exited():
-	update_current_card(0,false)
-func _on_Skill2_mouse_exited():
-	update_current_card(1,false)
-func _on_Skill3_mouse_exited():
-	update_current_card(2,false)
-func _on_Skill4_mouse_exited():
-	update_current_card(3,false)
-
-
 func _on_Skill1_pressed():
 	emit_signal("player_attacked",1)
-	next_turn()
 func _on_Skill2_pressed():
-	next_turn()
+	pass
 func _on_Skill3_pressed():
-	next_turn()
+	pass
 func _on_Skill4_pressed():
+	pass
+func _on_TurnEnd_pressed():
 	next_turn()
-
