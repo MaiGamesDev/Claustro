@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sc_attack - 복사본 (8).png-56be741a0a0351033084f461fde055db.stex"
+path="res://.import/sc_load_Incendiary.png-7c836335f5226815831c526cb8a692b6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/UI/Skill_card/cat/sc_attack - 복사본 (8).png"
-dest_files=[ "res://.import/sc_attack - 복사본 (8).png-56be741a0a0351033084f461fde055db.stex" ]
+source_file="res://Art/UI/Skill_card/mouse/sc_load_Incendiary.png"
+dest_files=[ "res://.import/sc_load_Incendiary.png-7c836335f5226815831c526cb8a692b6.stex" ]
 
 [params]
 
@@ -23,8 +23,8 @@ flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=1
-process/fix_alpha_border=true
+flags/srgb=2
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=2]
+[gd_scene load_steps=115 format=2]
 
 [ext_resource path="res://Art/UI/tp_bg.png" type="Texture" id=1]
 [ext_resource path="res://Art/UI/icon_cat.png" type="Texture" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://Resource/Font/neodgm.ttf" type="DynamicFontData" id=28]
 [ext_resource path="res://Source/Level/Hallway/Skillcard.gd" type="Script" id=29]
 [ext_resource path="res://Art/UI/btn_turnend.png" type="Texture" id=30]
+[ext_resource path="res://Art/UI/Skill_card/mouse/scb_mouse.png" type="Texture" id=31]
 
 [sub_resource type="AnimationNodeAnimation" id=14]
 animation = "enemy_side"
@@ -1313,18 +1314,20 @@ flat = true
 
 [node name="Sprite" type="Sprite" parent="UILayer/UI/BasicCommand/Skill2/Skill1/Skill"]
 show_behind_parent = true
-texture = ExtResource( 4 )
+texture = ExtResource( 31 )
 centered = false
 
 [node name="Label" type="Label" parent="UILayer/UI/BasicCommand/Skill2/Skill1/Skill"]
 show_behind_parent = true
+margin_top = 1.0
 margin_right = 84.0
-margin_bottom = 38.0
+margin_bottom = 25.0
 rect_scale = Vector2( 0.5, 0.5 )
+custom_colors/font_color = Color( 0.235294, 0.235294, 0.054902, 1 )
 custom_fonts/font = SubResource( 115 )
-text = "Magicball"
 align = 1
 valign = 1
+clip_text = true
 
 [node name="Tween" type="Tween" parent="UILayer/UI/BasicCommand/Skill2/Skill1"]
 

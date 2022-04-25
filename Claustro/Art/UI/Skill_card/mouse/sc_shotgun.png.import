@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sc_attack.png-1610496beb00b5a444c7eb489df5a4c2.stex"
+path="res://.import/sc_shotgun.png-4006b97a30e24d5dff0e7945a3e33ef7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/UI/Skill_card/cat/sc_attack.png"
-dest_files=[ "res://.import/sc_attack.png-1610496beb00b5a444c7eb489df5a4c2.stex" ]
+source_file="res://Art/UI/Skill_card/mouse/sc_shotgun.png"
+dest_files=[ "res://.import/sc_shotgun.png-4006b97a30e24d5dff0e7945a3e33ef7.stex" ]
 
 [params]
 
@@ -23,8 +23,8 @@ flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=1
-process/fix_alpha_border=true
+flags/srgb=2
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
